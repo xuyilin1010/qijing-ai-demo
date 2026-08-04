@@ -1,0 +1,73 @@
+/* ===================================================================
+   奇境.ai design tokens
+   Generated from tokens/qijing.tokens.json.
+   Do not edit by hand; run: npm run tokens:build
+   =================================================================== */
+:root{
+  --bar-bg:linear-gradient(180deg,rgba(244,242,236,.9),rgba(244,242,236,.6));
+  --bg-bot:#ece9e1;
+  --bg-top:#f4f2ec;
+  --card:#fbf9f4;
+  --card-2:#f6f3ec;
+  --err:#a64f48;
+  --err-soft:rgba(166,79,72,.13);
+  --gold:#bb8a36;
+  --gold-2:#d6a347;
+  --gold-deep:#9c722a;
+  --gold-line:rgba(187,138,54,.4);
+  --gold-on-navy:#e7c878;
+  --gold-soft:rgba(187,138,54,.12);
+  --gold-soft2:rgba(187,138,54,.18);
+  --grad-gold:linear-gradient(150deg,#e9bf5f,#cf9a3b);
+  --grad-green:linear-gradient(150deg,#3a6b52,#21402f);
+  --grad-navy:linear-gradient(150deg,#2a3060,#181c40);
+  --grad-plum:linear-gradient(150deg,#7d5a86,#432f50);
+  --grain:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="160" height="160" filter="url(%23g)"/></svg>');
+  --ink:#262320;
+  --ink2:#595650;
+  --ink3:#6d685f;
+  --ink4:#b8b3a9;
+  --line:rgba(32,37,74,.085);
+  --line2:rgba(32,37,74,.14);
+  --mono:"Geist Mono","SF Mono",ui-monospace,Menlo,monospace;
+  --navy:#1c2046;
+  --navy-2:#2a3060;
+  --navy-deep:#181c40;
+  --night-ink:#eef0fb;
+  --night-ink2:#aab0d4;
+  --ok:#3a7350;
+  --ok-soft:rgba(58,115,80,.13);
+  --on-gold:#22182a;
+  --on-navy-warm:#f1e4c4;
+  --radius-full:999px;
+  --radius-lg:14px;
+  --radius-md:12px;
+  --radius-sm:10px;
+  --radius-xl:18px;
+  --radius-xs:7px;
+  --ring:0 0 0 3px rgba(187,138,54,.12);
+  --sans:"Geist","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --serif:"Source Serif 4","Noto Serif SC",Georgia,"Songti SC",serif;
+  --shadow-1:0 1px 2px rgba(32,37,74,.05),0 1px 0 rgba(32,37,74,.03);
+  --shadow-2:0 2px 5px rgba(32,37,74,.06),0 14px 34px rgba(32,37,74,.08);
+  --shadow-logo:0 3px 8px rgba(28,32,70,.26);
+  --space-1:8px;
+  --space-2:16px;
+  --space-3:24px;
+  --space-4:32px;
+  --space-5:40px;
+  --space-6:48px;
+  --space-8:64px;
+  --space-page-b:96px;
+  --space-section:56px;
+  --type-body:14px;
+  --type-card-title:16px;
+  --type-meta:12px;
+  --type-metric:34px;
+  --type-page-title:26px;
+  --type-zone-title:20px;
+  --warn:#b06a26;
+  --warn-soft:rgba(176,106,38,.14);
+  --weight-regular:400;
+  --weight-semibold:600;
+}

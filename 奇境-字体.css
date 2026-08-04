@@ -1,0 +1,27 @@
+/* ===================================================================
+   奇境 · 自托管字体（DESIGN.md §3.1 的 5 个字体，全部 SIL OFL 1.1 可商用）
+   字体文件来自 fontsource（中文已压成 chinese-simplified 单文件子集）。
+   为什么自托管：fonts.googleapis.com 在国内会被墙/超时 → 回退系统平方；
+   自托管后处处稳定加载、且彻底不依赖 Google。
+
+   ⚠️ 版权红线：本文件只放 OFL 可商用字体。
+   平方(PingFang)/微软雅黑等系统专有字 = 只能在 font stack 里做"兜底引用"
+   （靠用户设备自带，合法），绝不在此 @font-face 自托管/嵌入（方正告过嵌入微软雅黑）。
+
+   用法：每页 <link rel="stylesheet" href="奇境-字体.css">，
+   并删掉所有 fonts.googleapis.com / fonts.gstatic.com 的 <link>。
+   字重按 DESIGN.md §3.3 只取 400 / 600（衬线另留 500 给格言长文）。
+   =================================================================== */
+
+/* —— 拉丁 / 数字 / UI —— */
+@font-face{font-family:"Geist";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/geist-400.woff2") format("woff2")}
+@font-face{font-family:"Geist";font-style:normal;font-weight:600;font-display:swap;src:url("fonts/geist-600.woff2") format("woff2")}
+@font-face{font-family:"Geist Mono";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/geist-mono-400.woff2") format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/source-serif4-500.woff2") format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:600;font-display:swap;src:url("fonts/source-serif4-600.woff2") format("woff2")}
+
+/* —— 中文（思源黑 / 思源宋，chinese-simplified 子集单文件）—— */
+@font-face{font-family:"Noto Sans SC";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/noto-sans-sc-400.woff2") format("woff2")}
+@font-face{font-family:"Noto Sans SC";font-style:normal;font-weight:600;font-display:swap;src:url("fonts/noto-sans-sc-600.woff2") format("woff2")}
+@font-face{font-family:"Noto Serif SC";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/noto-serif-sc-500.woff2") format("woff2")}
+@font-face{font-family:"Noto Serif SC";font-style:normal;font-weight:600;font-display:swap;src:url("fonts/noto-serif-sc-600.woff2") format("woff2")}

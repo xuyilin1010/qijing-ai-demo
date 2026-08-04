@@ -1,0 +1,292 @@
+/* ===================================================================
+   奇境.ai · 最小共享组件层
+   依赖：tokens/tokens.css 已先加载。新增页面优先使用 qj-*，不要再手写一套按钮/卡片/表格/表单。
+   =================================================================== */
+
+.qj-stack{display:grid;gap:var(--space-2)}
+.qj-stack-tight{display:grid;gap:var(--space-1)}
+.qj-row{display:flex;align-items:center;gap:var(--space-1);flex-wrap:wrap}
+.qj-row-between{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);flex-wrap:wrap}
+
+.qj-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-1);
+  padding:var(--space-2);
+}
+.qj-card-strong{box-shadow:var(--shadow-2)}
+.qj-card-section{padding:var(--space-3)}
+
+.qj-title{
+  font-family:var(--serif);
+  font-size:var(--type-page-title);
+  font-weight:var(--weight-semibold);
+  color:var(--ink);
+  line-height:1.2;
+}
+.qj-section-title{
+  font-family:var(--serif);
+  font-size:var(--type-zone-title);
+  font-weight:var(--weight-semibold);
+  color:var(--ink);
+  line-height:1.3;
+}
+.qj-feature-title{display:flex;align-items:center;gap:var(--space-1)}
+.qj-feature-title svg{width:var(--space-2);height:var(--space-2);fill:var(--gold);stroke:none;flex:none}
+.qj-copy{font-size:var(--type-body);line-height:1.7;color:var(--ink2)}
+.qj-meta{font-family:var(--mono);font-size:var(--type-meta);font-weight:var(--weight-regular);color:var(--ink3)}
+
+.qj-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:var(--space-1);
+  min-height:var(--space-5);
+  padding:0 var(--space-2);
+  border-radius:var(--radius-sm);
+  border:1px solid transparent;
+  font-family:var(--sans);
+  font-size:var(--type-body);
+  font-weight:var(--weight-semibold);
+  color:var(--ink);
+  cursor:pointer;
+  transition:background .16s,border-color .16s,transform .16s,box-shadow .16s;
+}
+.qj-btn:active{transform:translateY(1px)}
+.qj-btn-primary{
+  background:var(--grad-gold);
+  color:var(--on-gold);
+  box-shadow:0 var(--space-1) var(--space-2) var(--gold-soft2);
+}
+.qj-btn-primary:hover{box-shadow:0 var(--space-1) var(--space-3) var(--gold-soft2)}
+.qj-btn-secondary{
+  background:var(--card);
+  border-color:var(--line);
+  color:var(--ink2);
+}
+.qj-btn-secondary:hover{border-color:var(--gold-line);color:var(--gold-deep)}
+.qj-btn-ghost{
+  background:transparent;
+  color:var(--gold-deep);
+}
+.qj-btn-ghost:hover{background:var(--gold-soft)}
+.qj-btn-sm{
+  min-height:var(--space-4);
+  padding:0 var(--space-2);
+  font-size:var(--type-meta);
+}
+.qj-btn-block{width:100%}
+
+.qj-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:var(--space-1);
+  min-height:var(--space-3);
+  padding:0 var(--space-1);
+  border-radius:var(--radius-xs);
+  font-family:var(--mono);
+  font-size:var(--type-meta);
+  font-weight:var(--weight-semibold);
+  letter-spacing:0;
+}
+.qj-badge-gold{background:var(--gold-soft);color:var(--gold-deep)}
+.qj-badge-ok{background:var(--ok-soft);color:var(--ok)}
+.qj-badge-warn{background:var(--warn-soft);color:var(--warn)}
+.qj-badge-err{background:var(--err-soft);color:var(--err)}
+.qj-badge-muted{background:var(--card-2);color:var(--ink3)}
+
+.qj-chip{
+  display:inline-flex;
+  align-items:center;
+  min-height:var(--space-4);
+  padding:0 var(--space-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius-full);
+  background:var(--card-2);
+  color:var(--ink2);
+  font-family:var(--sans);
+  font-size:var(--type-body);
+  font-weight:var(--weight-regular);
+  cursor:pointer;
+}
+.qj-chip.is-active{background:var(--gold);border-color:var(--gold);color:var(--on-gold);font-weight:var(--weight-semibold)}
+
+.qj-field{display:grid;gap:var(--space-1)}
+.qj-label{font-size:var(--type-meta);font-weight:var(--weight-semibold);color:var(--ink2)}
+.qj-input,.qj-select,.qj-textarea{
+  width:100%;
+  border:1px solid var(--line2);
+  border-radius:var(--radius-sm);
+  background:var(--card);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:var(--type-body);
+  outline:none;
+  transition:border-color .16s,box-shadow .16s,background .16s;
+}
+.qj-input,.qj-select{height:var(--space-5);padding:0 var(--space-2)}
+.qj-textarea{min-height:calc(var(--space-8) * 2);padding:var(--space-2);line-height:1.7;resize:vertical}
+.qj-input:focus,.qj-select:focus,.qj-textarea:focus{
+  border-color:var(--gold-line);
+  box-shadow:var(--ring);
+  background-color:var(--card);
+}
+.qj-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 16 16' fill='none' stroke='%236d685f' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><polyline points='4 6 8 10 12 6'/></svg>");background-repeat:no-repeat;background-position:right var(--space-2) center;padding-right:var(--space-5)}
+.qj-help{font-size:var(--type-meta);color:var(--ink3);line-height:1.6}
+
+/* 下拉菜单 —— §7.5 自定义触发钮 + 菜单面板。原生 <select> 点开的列表 CSS 管不了，要品牌化菜单用这个（行为见 qj-shell.js initDropdowns）。 */
+.qj-dropdown{position:relative}
+.qj-dropdown-trigger{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);width:100%;height:var(--space-5);padding:0 var(--space-2);border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--card);color:var(--ink);font-family:var(--sans);font-size:var(--type-body);cursor:pointer;transition:border-color .16s,background .16s}
+.qj-dropdown-trigger:hover{border-color:var(--line2)}
+.qj-dropdown-trigger:focus-visible{outline:none;box-shadow:var(--ring)}
+.qj-dropdown-chev{width:var(--space-2);height:var(--space-2);fill:none;stroke:var(--ink3);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;transition:transform .16s}
+.qj-dropdown.is-open .qj-dropdown-trigger{border-color:var(--gold-line);background:var(--gold-soft)}
+.qj-dropdown.is-open .qj-dropdown-chev{transform:rotate(180deg)}
+.qj-dropdown-menu{position:absolute;top:calc(100% + var(--space-1));left:0;min-width:100%;z-index:30;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-md);box-shadow:var(--shadow-2);padding:var(--space-1);display:none}
+.qj-dropdown.is-open .qj-dropdown-menu{display:block}
+.qj-dropdown-item{display:flex;align-items:center;padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);font-size:var(--type-body);color:var(--ink2);cursor:pointer;white-space:nowrap}
+.qj-dropdown-item:hover{background:var(--gold-soft)}
+.qj-dropdown-item.is-sel{color:var(--gold-deep)}
+
+.qj-table-wrap{
+  overflow:auto;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-1);
+}
+.qj-table{width:100%;border-collapse:collapse;font-size:var(--type-body)}
+.qj-table th{
+  padding:var(--space-2);
+  background:var(--card-2);
+  color:var(--ink3);
+  font-family:var(--mono);
+  font-size:var(--type-meta);
+  font-weight:var(--weight-semibold);
+  text-align:left;
+}
+.qj-table td{
+  padding:var(--space-2);
+  color:var(--ink);
+  border-top:1px solid var(--line);
+  vertical-align:middle;
+}
+.qj-table tr:hover td{background:var(--gold-soft)}
+
+.qj-icon-badge{
+  width:var(--space-5);
+  height:var(--space-5);
+  border-radius:var(--radius-sm);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--grad-navy);
+  color:var(--gold-2);
+  box-shadow:var(--shadow-logo);
+  font-family:var(--serif);
+  font-size:var(--type-card-title);
+  font-weight:var(--weight-semibold);
+}
+
+/* 面包屑 + 页头 —— 非顶级页（钻进来的详情 / 技能工作台）开头用：给「我在哪 + 一键回上层」。
+   顶级页（侧栏直达）不用；浮层用关闭、翻页用翻页器，都不是面包屑。最后一节 aria-current="page" = 当前页、不可点。 */
+.qj-pagehead{display:flex;flex-direction:column;gap:var(--space-1);margin-bottom:var(--space-3)}
+.qj-pagehead-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);flex-wrap:wrap}
+.qj-crumbs ol{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-1);margin:0;padding:0;list-style:none}
+.qj-crumbs li{display:inline-flex;align-items:center;gap:var(--space-1);min-width:0;font-family:var(--sans);font-size:var(--type-body);line-height:1.4}
+.qj-crumbs li:not(:last-child)::after{content:"/";color:var(--ink4)}
+.qj-crumb{max-width:14em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--ink3);text-decoration:none;border-radius:var(--radius-sm);transition:color .16s}
+a.qj-crumb:hover{color:var(--gold-deep)}
+a.qj-crumb:focus-visible{outline:none;box-shadow:var(--ring)}
+.qj-crumb[aria-current="page"]{color:var(--ink)}
+
+/* 浮层关闭 —— sheet / 弹层右上角的 ✕（浮层用关闭，不用面包屑）。§7.2「纯图标功能按钮」例外。 */
+.qj-close{width:var(--space-5);height:var(--space-5);border-radius:var(--radius-sm);border:none;background:transparent;color:var(--ink3);display:inline-flex;align-items:center;justify-content:center;font-size:20px;font-weight:var(--weight-semibold);line-height:1;cursor:pointer;transition:color .16s,background .16s}
+.qj-close:hover{color:var(--gold-deep);background:var(--gold-soft)}
+.qj-close:focus-visible{outline:none;box-shadow:var(--ring)}
+
+/* 翻页器 —— 极简无框：‹ 日期/当前 ›（翻页用翻页器，不是返回）。中间放日期，点中间回当前。 */
+.qj-pager{display:inline-flex;align-items:center;gap:var(--space-2);border:none;background:none;box-shadow:none;padding:0}
+.qj-pager button{border:none;background:transparent;cursor:pointer;font-family:var(--sans);transition:color .16s}
+.qj-pager-arrow{color:var(--gold-deep);font-size:var(--type-card-title);padding:0 var(--space-1)}
+.qj-pager-now{font-family:var(--mono);font-size:var(--type-meta);color:var(--ink)}
+.qj-pager-arrow:hover{color:var(--gold)}
+.qj-pager-now:hover{color:var(--gold-deep)}
+.qj-pager button:focus-visible{outline:none;box-shadow:var(--ring)}
+
+/* 空状态 —— 搬自选题页 .empty：衬线标题 + 一句说明（可带金色行内链接），居中克制、不堆插画、不放大按钮（§13.4）。 */
+.qj-empty{text-align:center;color:var(--ink3);font-size:var(--type-body);line-height:1.7;padding:var(--space-6) var(--space-3)}
+.qj-empty-title{font-family:var(--serif);font-size:var(--type-card-title);color:var(--ink2);margin-bottom:var(--space-1)}
+.qj-empty a{color:var(--gold-deep);font-weight:var(--weight-semibold)}
+
+/* —— 以下组件从各页面真实现搬入，一次补齐审计缺口 —— */
+
+/* 标签页 Tabs —— 搬自上传弹窗 .seg（§7.8）。点击切换见 qj-shell.js。 */
+.qj-tabs{display:inline-flex;gap:var(--space-1);padding:var(--space-1);background:var(--card-2);border-radius:var(--radius-md)}
+.qj-tab{border:none;background:none;cursor:pointer;font-family:var(--sans);font-size:var(--type-body);color:var(--ink3);height:var(--space-4);padding:0 var(--space-2);border-radius:var(--radius-sm);transition:background .16s,color .16s}
+.qj-tab.is-active{background:var(--card);color:var(--ink);box-shadow:var(--shadow-1)}
+.qj-tab:focus-visible{outline:none;box-shadow:var(--ring)}
+
+/* 文件上传 Dropzone —— 搬自上传弹窗 .drop。 */
+.qj-upload{display:flex;flex-direction:column;align-items:center;gap:var(--space-1);text-align:center;padding:var(--space-5) var(--space-3);border:2px dashed var(--gold-line);border-radius:var(--radius-lg);background:var(--gold-soft);cursor:pointer;transition:background .16s,border-color .16s}
+.qj-upload:hover,.qj-upload.is-over{background:var(--gold-soft2)}
+.qj-upload-title{font-size:var(--type-body);font-weight:var(--weight-semibold);color:var(--ink)}
+.qj-upload-sub{font-size:var(--type-meta);color:var(--ink3)}
+
+/* 搜索框 Search —— 搬自历史任务 .search。 */
+.qj-search{display:flex;align-items:center;gap:var(--space-1);height:var(--space-5);padding:0 var(--space-2);border:1px solid var(--line);background:var(--card);border-radius:var(--radius-md);box-shadow:var(--shadow-1)}
+.qj-search svg{width:var(--space-2);height:var(--space-2);flex:none;fill:none;stroke:var(--ink3);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.qj-search input{flex:1;min-width:0;border:none;background:none;outline:none;font-family:var(--sans);font-size:var(--type-body);color:var(--ink)}
+.qj-search:focus-within{border-color:var(--gold-line);box-shadow:var(--ring)}
+
+/* 头像 Avatar —— 角色形象图（KOS 9 个 SVG：小草/编导/文案…，在 avatars/）；无图时退藏蓝渐变 + 衬线首字。 */
+.qj-avatar{width:var(--space-5);height:var(--space-5);border-radius:var(--radius-full);flex:none;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;color:var(--on-navy-warm);font-family:var(--serif);font-size:var(--type-body);background:var(--grad-navy)}
+.qj-avatar img{width:100%;height:100%;display:block}
+
+/* 提示条 Toast —— 搬自一键小红书 .toast（§13.6：卡片 + 左色条，分成功/失败）。用 qj.toast(msg,type) 调。 */
+.qj-toast-host{position:fixed;top:var(--space-8);right:var(--space-3);z-index:90;display:flex;flex-direction:column;gap:var(--space-1);pointer-events:none}
+.qj-toast{display:flex;align-items:center;gap:var(--space-1);background:var(--card);border:1px solid var(--line);border-left:2px solid var(--ok);border-radius:var(--radius-md);box-shadow:var(--shadow-2);padding:var(--space-2);font-size:var(--type-body);color:var(--ink);max-width:30ch;animation:qj-toast-in .2s}
+.qj-toast.is-err{border-left-color:var(--err)}
+@keyframes qj-toast-in{from{opacity:0;transform:translateY(calc(var(--space-1) * -1))}to{opacity:1;transform:translateY(0)}}
+
+/* 浮层 / 弹窗 Sheet —— 搬自资产页 .overlay/.sheet（§13.7）。关闭用 qj-close。 */
+.qj-overlay{position:fixed;inset:0;background:rgba(28,32,70,.32);backdrop-filter:blur(var(--space-1));-webkit-backdrop-filter:blur(var(--space-1));z-index:50;display:flex;align-items:flex-start;justify-content:center;padding:var(--space-6) var(--space-3)}
+.qj-overlay[hidden]{display:none}
+.qj-sheet{background:var(--bg-top);border:1px solid var(--line);border-radius:var(--radius-xl);box-shadow:var(--shadow-2);max-width:60rem;width:100%;display:flex;flex-direction:column;max-height:85vh;overflow-y:auto}
+.qj-sheet-head{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg-top);border-radius:var(--radius-xl) var(--radius-xl) 0 0;z-index:2}
+.qj-sheet-title{font-family:var(--serif);font-size:var(--type-card-title);color:var(--ink)}
+.qj-sheet-body{padding:var(--space-3)}
+
+/* 滑块 Range —— 搬自高光剪辑 .count-slider（细轨 + 金色圆钮）。 */
+.qj-range{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:var(--line2);border-radius:var(--radius-full);cursor:pointer;outline:none}
+.qj-range::-webkit-slider-thumb{-webkit-appearance:none;width:var(--space-2);height:var(--space-2);border-radius:var(--radius-full);background:var(--gold);cursor:pointer;border:2px solid var(--card);box-shadow:var(--shadow-1)}
+.qj-range::-moz-range-thumb{width:var(--space-2);height:var(--space-2);border-radius:var(--radius-full);background:var(--gold);cursor:pointer;border:2px solid var(--card)}
+.qj-range:focus-visible{box-shadow:var(--ring)}
+
+/* 步骤条 Steps —— 克制单色：当前=深墨实心、已完成=灰实心、未到=描边；无彩色填充。 */
+.qj-steps{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.qj-step{display:inline-flex;align-items:center;gap:var(--space-1);font-family:var(--mono);font-size:var(--type-meta);font-weight:var(--weight-regular);color:var(--ink3)}
+.qj-step-n{width:var(--space-2);height:var(--space-2);border-radius:var(--radius-full);display:inline-flex;align-items:center;justify-content:center;font-size:var(--type-meta);border:1px solid var(--line2);color:var(--ink3)}
+.qj-step.is-active{color:var(--ink);font-weight:var(--weight-semibold)}
+.qj-step.is-active .qj-step-n{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.qj-step.is-done .qj-step-n{background:var(--ink3);border-color:var(--ink3);color:var(--card)}
+
+/* 进度条 Progress —— 轨道 + 金色填充；宽度按百分比内联。 */
+.qj-progress{height:var(--space-1);background:var(--line2);border-radius:var(--radius-full);overflow:hidden}
+.qj-progress-fill{height:100%;background:var(--grad-gold);border-radius:inherit;transition:width .3s}
+
+@media (max-width:600px){
+  .qj-crumbs li{display:none}
+  .qj-crumbs li:nth-last-child(2){display:inline-flex}
+  .qj-crumbs li:nth-last-child(2)::after{content:none}
+  .qj-crumbs li:nth-last-child(2) .qj-crumb{color:var(--gold-deep);min-height:var(--space-6);display:inline-flex;align-items:center}
+  .qj-crumbs li:nth-last-child(2) .qj-crumb::before{content:"‹\00a0"}
+}
+
+@media (max-width:680px){
+  .qj-card-section{padding:var(--space-2)}
+  .qj-title{font-size:var(--type-zone-title)}
+  .qj-row-between{align-items:flex-start}
+  .qj-btn{width:100%}
+}
