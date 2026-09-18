@@ -1,0 +1,111 @@
+{
+  "testedAt": "2026-09-18T09:03:13.822Z",
+  "browser": "Microsoft Edge headless",
+  "pageScriptsBlockedByCSP": true,
+  "results": [
+    {
+      "name": "Mobile no page scripts or horizontal overflow",
+      "pass": true,
+      "details": {
+        "height": 5124.15625,
+        "vb": 9460,
+        "scripts": 0,
+        "overflow": false
+      }
+    },
+    {
+      "name": "Responsive long SVG ratio",
+      "pass": true,
+      "details": {
+        "height": 5124.15625,
+        "vb": 9460,
+        "scripts": 0,
+        "overflow": false
+      }
+    },
+    {
+      "name": "Start navigates to first station",
+      "pass": true
+    },
+    {
+      "name": "Knowledge card opens",
+      "pass": true
+    },
+    {
+      "name": "Knowledge card closes",
+      "pass": true
+    },
+    {
+      "name": "Native animateMotion changes actor position",
+      "pass": true,
+      "details": {
+        "pose1": {
+          "x": 62.73399494197415,
+          "y": 999.0546998138785
+        },
+        "pose2": {
+          "x": 159.00495280629735,
+          "y": 1009.6721230633163
+        }
+      }
+    },
+    {
+      "name": "Navigate next after station 0",
+      "pass": true,
+      "details": "#station_1"
+    },
+    {
+      "name": "Navigate next after station 1",
+      "pass": true,
+      "details": "#station_2"
+    },
+    {
+      "name": "Navigate next after station 2",
+      "pass": true,
+      "details": "#station_3"
+    },
+    {
+      "name": "Navigate next after station 3",
+      "pass": true,
+      "details": "#station_4"
+    },
+    {
+      "name": "Navigate next after station 4",
+      "pass": true,
+      "details": "#station_5"
+    },
+    {
+      "name": "Navigate next after station 5",
+      "pass": true,
+      "details": "#route-end"
+    },
+    {
+      "name": "Late station knowledge opens",
+      "pass": true
+    },
+    {
+      "name": "Replay returns and resets cards",
+      "pass": true
+    },
+    {
+      "name": "Second run works",
+      "pass": true
+    },
+    {
+      "name": "Desktop has no overflow",
+      "pass": true
+    },
+    {
+      "name": "Standalone SVG loads",
+      "pass": true
+    },
+    {
+      "name": "Standalone SVG interaction works",
+      "pass": true
+    },
+    {
+      "name": "320px layout has no overflow",
+      "pass": true
+    }
+  ]
+}

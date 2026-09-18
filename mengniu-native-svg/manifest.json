@@ -1,0 +1,41 @@
+{
+  "created": "2026-09-18",
+  "reference": "https://anitashianyi-create.github.io/mengniu-body-route/",
+  "width": 720,
+  "heroHeight": 1070,
+  "totalHeight": 9460,
+  "stageHeight": 1260,
+  "stages": [
+    {
+      "time": "08:00",
+      "title": "人还没醒透咖啡先到了。"
+    },
+    {
+      "time": "13:00",
+      "title": "午饭已经签收人想原地关机。"
+    },
+    {
+      "time": "15:30",
+      "title": "说好今天少吃点奶茶说它顺路。"
+    },
+    {
+      "time": "21:00",
+      "title": "晚饭刚说再见夜宵发来定位。"
+    },
+    {
+      "time": "23:30",
+      "title": "月亮已经就位手机还在加戏。"
+    },
+    {
+      "time": "00:30",
+      "title": "你终于下线身体还在值班。"
+    }
+  ],
+  "javascriptInArtifact": false,
+  "assets": [
+    "hero.webp",
+    "actors-v2.webp",
+    "atlas.webp"
+  ],
+  "wechatStatus": "UNVERIFIED — replace media URLs and validate imported draft"
+}
