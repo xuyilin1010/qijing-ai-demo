@@ -6,7 +6,7 @@
   "background_images": 9,
   "cover": "native width expansion 2.4s and immediate cover removal",
   "journal": "native HTML vertical scroll inside foreignObject; physical cross-axis after rotation",
-  "routes": "static; no scroll-follow claim",
+  "routes": "CSS view timeline progress in supporting engines; static + click draw fallback; WeChat unverified",
   "publishing": "source import + editor sync, not normal paste",
   "assets": [
     "PANORAMA_WECHAT_URL",
