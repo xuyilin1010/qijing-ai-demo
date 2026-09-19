@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-20",
+  "environment": "Codex in-app browser, desktop with mobile viewport; not WeChat",
+  "browserTestCommit": "1f01bf1",
+  "scriptPolicy": "script-src 'none'; object-src 'none'",
+  "scriptCount": 0,
+  "checks": [
+    {"name": "390px cover unfolds", "result": "passed", "initialHeight": 715, "intermediateHeight": 752, "finalApproxHeight": 2498, "coverAfterClickHeight": 0},
+    {"name": "background pictures visible after foreignObject fix", "result": "passed", "evidence": "tool screenshots of coast, dunes, gallery and night"},
+    {"name": "tabs", "result": "passed", "sequence": ["mountain", "water", "sky", "mountain"], "visibleLayersEachStep": 1},
+    {"name": "note", "result": "passed", "sequence": ["visible", "hidden"]},
+    {"name": "stars repeat", "result": "passed", "sequence": ["visible", "hidden", "visible"]},
+    {"name": "native card keyboard scroll and snap", "result": "passed", "scrollTopSequence": [0, 530, 1060, 530], "clientHeight": 530, "scrollHeight": 1590},
+    {"name": "orbit animated stroke", "result": "passed", "sampleOffsets": ["-49.1347px", "-21.6522px"]},
+    {"name": "320px cover width", "result": "passed", "viewport": 320, "coverWidth": 320},
+    {"name": "template XML and references", "result": "passed", "duplicateIds": false, "danglingEventTargets": false},
+    {"name": "135 source roundtrip", "result": "passed with transformations", "inputCommit": "4a747ad", "svgCount": 11, "animationCount": 40, "foreignObjectCount": 7, "directClickEventCount": 2},
+    {"name": "135 save/sync", "result": "not completed", "reason": "Actual login dialog appeared"},
+    {"name": "clipboard transport isolation", "result": "inconclusive", "reason": "Browser tool virtual clipboard had no data to paste; no evidence of which sanitizer removed the nodes"},
+    {"name": "WeChat draft and phone", "result": "not tested", "reason": "Prior explicit site safety denial; not bypassed"},
+    {"name": "native scroll-linked route", "result": "not implemented"}
+  ],
+  "overall": "Native candidate and editor import investigated; not approved as working in WeChat"
+}
