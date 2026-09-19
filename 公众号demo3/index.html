@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>行者 · 公众号 SVG 交互 Demo</title>
+<style>
+  :root{ --gold:#C9A86C; --blue:#4AABFF; --navy:#020617; }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; min-height:100vh; padding:48px 24px 72px;
+    background:radial-gradient(1200px 700px at 50% -10%, #0d2140 0%, #020617 60%);
+    color:#F8FAFC;
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:960px; margin:0 auto; }
+  .kicker{ font-size:12px; letter-spacing:.42em; color:var(--gold); text-transform:uppercase; }
+  h1{ font-size:clamp(28px,5vw,46px); font-weight:700; margin:14px 0 10px; letter-spacing:.02em; }
+  .lede{ color:rgba(248,250,252,.72); font-size:15px; line-height:1.8; max-width:60ch; margin:0 0 8px; }
+  .rule{ width:56px; height:3px; background:var(--gold); margin:26px 0 34px; }
+
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+  .card{
+    position:relative; display:block; text-decoration:none; color:inherit;
+    background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:24px;
+    transition:.25s;
+  }
+  .card:hover{ border-color:var(--gold); transform:translateY(-3px); background:linear-gradient(160deg,rgba(201,168,108,.12),rgba(255,255,255,.02)); }
+  .card .tag{ font-size:11px; letter-spacing:.24em; color:var(--blue); }
+  .card h3{ margin:10px 0 8px; font-size:20px; font-weight:600; }
+  .card p{ margin:0; font-size:13px; line-height:1.75; color:rgba(248,250,252,.66); }
+  .card .go{ margin-top:16px; font-size:12px; letter-spacing:.18em; color:var(--gold); }
+  .badge{ position:absolute; top:20px; right:22px; font-size:10px; padding:3px 9px; border:1px solid rgba(255,255,255,.22); border-radius:999px; color:rgba(255,255,255,.6); }
+
+  h2{ font-size:14px; letter-spacing:.2em; color:rgba(248,250,252,.5); font-weight:500; margin:46px 0 16px; text-transform:uppercase; }
+  .sheet{ width:100%; border-radius:12px; border:1px solid rgba(255,255,255,.1); display:block; }
+  .docs{ list-style:none; padding:0; margin:0; }
+  .docs li{ border-bottom:1px solid rgba(255,255,255,.08); }
+  .docs a{ display:flex; justify-content:space-between; align-items:center; padding:14px 4px; text-decoration:none; color:rgba(248,250,252,.86); font-size:14px; }
+  .docs a:hover{ color:var(--gold); }
+  .docs span{ font-size:12px; color:rgba(248,250,252,.4); }
+
+  footer{ margin-top:56px; padding-top:22px; border-top:1px solid rgba(255,255,255,.08);
+    font-size:12px; color:rgba(248,250,252,.42); line-height:1.9; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">Xingzhe · WeChat SVG</div>
+  <h1>行者 · 公众号 SVG 交互推文</h1>
+  <p class="lede">复刻迪桑特「寻找同频的人一起破风」的 SVG 交互结构，替换为行者品牌内容。提供竖屏长图与横屏全景两个版本，含交互原型、SVG 组件与落地文档。</p>
+  <div class="rule"></div>
+
+  <div class="grid">
+    <a class="card" href="行者-横屏全景版.html">
+      <span class="badge">9 屏</span>
+      <div class="tag">LANDSCAPE</div>
+      <h3>横屏全景版</h3>
+      <p>9 段连续大图从左到右连贯阅读，拖拽 / 滑动 + 吸附分节。含三感切换、消费画像切换。</p>
+      <div class="go">打开原型 →</div>
+    </a>
+
+    <a class="card" href="行者-竖屏长图版.html">
+      <span class="badge">竖屏</span>
+      <div class="tag">PORTRAIT</div>
+      <h3>竖屏长图版</h3>
+      <p>封面 → 产品介绍 3 页 → 三感切换 → 消费画像 → 品牌价值 → 结尾 CTA，手机端竖屏滑动浏览。</p>
+      <div class="go">打开原型 →</div>
+    </a>
+
+    <a class="card" href="assets/sense-switch-horizontal.svg">
+      <span class="badge">SVG</span>
+      <div class="tag">COMPONENT</div>
+      <h3>三感切换组件</h3>
+      <p>观感 / 口感 / 情感 点击切换，纯 SVG 实现，不依赖外部 JS，可直接粘进公众号编辑器。</p>
+      <div class="go">查看组件 →</div>
+    </a>
+
+    <a class="card" href="assets/panorama-sheet.jpg">
+      <span class="badge">素材</span>
+      <div class="tag">ASSETS</div>
+      <h3>全景素材一览</h3>
+      <p>9 张品牌精修背景图总览，可作为长图分镜与视觉走查参考。</p>
+      <div class="go">查看素材 →</div>
+    </a>
+  </div>
+
+  <h2>全景底图</h2>
+  <img class="sheet" src="assets/panorama-sheet.jpg" alt="行者横屏全景素材"/>
+
+  <h2>文档</h2>
+  <ul class="docs">
+    <li><a href="docs/设计说明.md">设计说明<span>结构 · 文案 · 尺寸 · 分镜</span></a></li>
+    <li><a href="docs/公众号落地指南.md">公众号落地指南<span>素材替换 · 粘贴 SVG · 兼容性</span></a></li>
+    <li><a href="README.md">README<span>目录结构与预览方式</span></a></li>
+  </ul>
+
+  <footer>
+    吸烟有害健康，请勿在禁烟场所吸烟；本产品含尼古丁，未成年人禁止购买。<br/>
+    本 Demo 仅用于品牌文化与视觉方案演示，发布前请客户法务确认合规性。
+  </footer>
+</div>
+</body>
+</html>

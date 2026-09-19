@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 420" preserveAspectRatio="xMidYMid meet" style="max-width:100%;height:auto;display:block;">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1220"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <clipPath id="round">
+      <rect width="750" height="420" rx="20"/>
+    </clipPath>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="750" height="420" fill="url(#bg)"/>
+  <g clip-path="url(#round)">
+    <image href="https://your-cdn.com/xingzhe/taste_capsule.jpg" x="0" y="0" width="750" height="420" preserveAspectRatio="xMidYMid slice" opacity="0.35"/>
+    <rect width="750" height="420" fill="rgba(2,6,23,0.55)"/>
+  </g>
+
+  <!-- 标题 -->
+  <text x="375" y="50" text-anchor="middle" font-size="22" fill="#C9A86C" letter-spacing="6" font-family="PingFang SC, Microsoft YaHei, sans-serif">三感体验</text>
+
+  <!-- Tab 按钮组 -->
+  <g transform="translate(95, 78)">
+    <!-- 按钮 1：观感 -->
+    <g cursor="pointer" onclick="
+      document.getElementById('tab-sight').setAttribute('fill','rgba(74,171,255,0.22)');
+      document.getElementById('tab-sight-stroke').setAttribute('stroke','#4AABFF');
+      document.getElementById('txt-sight').setAttribute('fill','#fff');
+      document.getElementById('tab-taste').setAttribute('fill','transparent');
+      document.getElementById('tab-taste-stroke').setAttribute('stroke','rgba(255,255,255,0.25)');
+      document.getElementById('txt-taste').setAttribute('fill','rgba(255,255,255,0.55)');
+      document.getElementById('tab-emotion').setAttribute('fill','transparent');
+      document.getElementById('tab-emotion-stroke').setAttribute('stroke','rgba(255,255,255,0.25)');
+      document.getElementById('txt-emotion').setAttribute('fill','rgba(255,255,255,0.55)');
+      document.getElementById('card-sight').setAttribute('opacity','1');
+      document.getElementById('card-taste').setAttribute('opacity','0');
+      document.getElementById('card-emotion').setAttribute('opacity','0');
+    ">
+      <rect id="tab-sight" x="0" y="0" width="160" height="42" rx="21" fill="rgba(74,171,255,0.22)" stroke="#4AABFF" stroke-width="1"/>
+      <text id="txt-sight" x="80" y="26" text-anchor="middle" font-size="16" fill="#fff" font-family="PingFang SC, Microsoft YaHei, sans-serif">观感</text>
+    </g>
+
+    <!-- 按钮 2：口感 -->
+    <g transform="translate(180,0)" cursor="pointer" onclick="
+      document.getElementById('tab-sight').setAttribute('fill','transparent');
+      document.getElementById('tab-sight-stroke').setAttribute('stroke','rgba(255,255,255,0.25)');
+      document.getElementById('txt-sight').setAttribute('fill','rgba(255,255,255,0.55)');
+      document.getElementById('tab-taste').setAttribute('fill','rgba(74,171,255,0.22)');
+      document.getElementById('tab-taste-stroke').setAttribute('stroke','#4AABFF');
+      document.getElementById('txt-taste').setAttribute('fill','#fff');
+      document.getElementById('tab-emotion').setAttribute('fill','transparent');
+      document.getElementById('tab-emotion-stroke').setAttribute('stroke','rgba(255,255,255,0.25)');
+      document.getElementById('txt-emotion').setAttribute('fill','rgba(255,255,255,0.55)');
+      document.getElementById('card-sight').setAttribute('opacity','0');
+      document.getElementById('card-taste').setAttribute('opacity','1');
+      document.getElementById('card-emotion').setAttribute('opacity','0');
+    ">
+      <rect id="tab-taste" x="0" y="0" width="160" height="42" rx="21" fill="transparent" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+      <text id="txt-taste" x="80" y="26" text-anchor="middle" font-size="16" fill="rgba(255,255,255,0.55)" font-family="PingFang SC, Microsoft YaHei, sans-serif">口感</text>
+    </g>
+
+    <!-- 按钮 3：情感 -->
+    <g transform="translate(360,0)" cursor="pointer" onclick="
+      document.getElementById('tab-sight').setAttribute('fill','transparent');
+      document.getElementById('tab-sight-stroke').setAttribute('stroke','rgba(255,255,255,0.25)');
+      document.getElementById('txt-sight').setAttribute('fill','rgba(255,255,255,0.55)');
+      document.getElementById('tab-taste').setAttribute('fill','transparent');
+      document.getElementById('tab-taste-stroke').setAttribute('stroke','rgba(255,255,255,0.25)');
+      document.getElementById('txt-taste').setAttribute('fill','rgba(255,255,255,0.55)');
+      document.getElementById('tab-emotion').setAttribute('fill','rgba(74,171,255,0.22)');
+      document.getElementById('tab-emotion-stroke').setAttribute('stroke','#4AABFF');
+      document.getElementById('txt-emotion').setAttribute('fill','#fff');
+      document.getElementById('card-sight').setAttribute('opacity','0');
+      document.getElementById('card-taste').setAttribute('opacity','0');
+      document.getElementById('card-emotion').setAttribute('opacity','1');
+    ">
+      <rect id="tab-emotion" x="0" y="0" width="160" height="42" rx="21" fill="transparent" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+      <text id="txt-emotion" x="80" y="26" text-anchor="middle" font-size="16" fill="rgba(255,255,255,0.55)" font-family="PingFang SC, Microsoft YaHei, sans-serif">情感</text>
+    </g>
+  </g>
+
+  <!-- 指示小点 -->
+  <g transform="translate(375, 145)">
+    <circle id="dot-sight" r="4" fill="#C9A86C"/>
+    <circle cx="-14" r="4" fill="rgba(255,255,255,0.25)"/>
+    <circle cx="14" r="4" fill="rgba(255,255,255,0.25)"/>
+  </g>
+
+  <!-- 内容卡片 -->
+  <g id="card-sight" opacity="1">
+    <text x="375" y="205" text-anchor="middle" font-size="28" fill="#fff" font-weight="bold" font-family="PingFang SC, Microsoft YaHei, sans-serif">流光溢彩，格调尽显</text>
+    <line x1="330" y1="225" x2="420" y2="225" stroke="#C9A86C" stroke-width="2"/>
+    <text x="375" y="265" text-anchor="middle" font-size="16" fill="rgba(255,255,255,0.9)" font-family="PingFang SC, Microsoft YaHei, sans-serif">深蓝星河般的包装设计</text>
+    <text x="375" y="292" text-anchor="middle" font-size="16" fill="rgba(255,255,255,0.9)" font-family="PingFang SC, Microsoft YaHei, sans-serif">搭配香槟金线条，于暗处自成焦点</text>
+  </g>
+
+  <g id="card-taste" opacity="0">
+    <text x="375" y="205" text-anchor="middle" font-size="28" fill="#fff" font-weight="bold" font-family="PingFang SC, Microsoft YaHei, sans-serif">爆珠轻启，醇香入喉</text>
+    <line x1="330" y1="225" x2="420" y2="225" stroke="#C9A86C" stroke-width="2"/>
+    <text x="375" y="265" text-anchor="middle" font-size="16" fill="rgba(255,255,255,0.9)" font-family="PingFang SC, Microsoft YaHei, sans-serif">烟草本香与咖啡风味交织</text>
+    <text x="375" y="292" text-anchor="middle" font-size="16" fill="rgba(255,255,255,0.9)" font-family="PingFang SC, Microsoft YaHei, sans-serif">清凉不腻，回甘绵长</text>
+  </g>
+
+  <g id="card-emotion" opacity="0">
+    <text x="375" y="205" text-anchor="middle" font-size="28" fill="#fff" font-weight="bold" font-family="PingFang SC, Microsoft YaHei, sans-serif">点燃一刻，心向自由</text>
+    <line x1="330" y1="225" x2="420" y2="225" stroke="#C9A86C" stroke-width="2"/>
+    <text x="375" y="265" text-anchor="middle" font-size="16" fill="rgba(255,255,255,0.9)" font-family="PingFang SC, Microsoft YaHei, sans-serif">每一次吞吐</text>
+    <text x="375" y="292" text-anchor="middle" font-size="16" fill="rgba(255,255,255,0.9)" font-family="PingFang SC, Microsoft YaHei, sans-serif">都是一次短暂而完整的出发</text>
+  </g>
+</svg>
