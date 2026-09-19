@@ -1,0 +1,5 @@
+/* Legacy mobile viewport fallbacks: retain a visible cover before assets load. */
+#cover{height:100vh;height:100svh;background:linear-gradient(155deg,#173f62,#07182f 65%,#42362c)}
+dialog{max-height:90vh;max-height:90svh}
+dialog:not([open]){display:none}
+@media(orientation:portrait){#experience{width:100vh;height:100vw;width:100dvh;height:100dvw}}

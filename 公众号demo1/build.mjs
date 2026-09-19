@@ -78,7 +78,11 @@ ${text('closing',3540,832,25,'fill="#d4dee8" letter-spacing="2"')}
 
 const siteTemplate=fs.readFileSync(path.join(root,'shell.html'),'utf8');
 const inlineConfig=JSON.stringify(config).replaceAll('<','\\u003c');
-fs.writeFileSync(path.join(root,'index.html'),siteTemplate.replace('<!--ART-->',svg).replace('<!--CONFIG-->',inlineConfig).replaceAll('<!--COVER-->',imageAssets.panorama).replace('<!--STYLE-->',fs.readFileSync(path.join(root,'style.css'),'utf8')).replace('<!--APP-->',fs.readFileSync(path.join(root,'app.js'),'utf8')));
+let webSvg=svg;
+for(const [key,value] of Object.entries(imageAssets))webSvg=webSvg.replaceAll(value,esc(config.assets[key]));
+const page=siteTemplate.replace('<!--ART-->',()=>webSvg).replace('<!--CONFIG-->',()=>inlineConfig).replaceAll('<!--COVER-->',()=>esc(config.assets.panorama)).replace('<!--STYLE-->',()=>fs.readFileSync(path.join(root,'style.css'),'utf8')).replace('<!--APP-->',()=>fs.readFileSync(path.join(root,'app.js'),'utf8'));
+const withInitialText=page.replace('</style>',()=>fs.readFileSync(path.join(root,'mobile.css'),'utf8')+'</style>').replace(/(<(?:p|h1|span)[^>]*data-key="([^"]+)"[^>]*>)<\//g,(_,tag,key)=>tag+esc(config[key]??'')+'</');
+fs.writeFileSync(path.join(root,'index.html'),withInitialText);
 fs.writeFileSync(path.join(root,'journey.svg'),svg);
 const native=`<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="script-src 'none'; object-src 'none'"><title>循光而行 · 无脚本交互检查</title><style>html,body{margin:0;background:#07172c;color:#e5e8ed;font-family:Arial,'Microsoft YaHei',sans-serif}header{position:fixed;z-index:3;top:0;left:0;right:0;padding:14px 20px;background:#07172ce8;font-size:13px;display:flex;justify-content:space-between}a{color:#e4c18b}main{height:100svh;overflow:auto}svg{display:block;height:100%;width:auto;max-width:none} @media(orientation:portrait){header{font-size:11px}main{padding-top:52px;height:calc(100svh - 52px)}svg{height:65vh}} </style></head><body><header><span>无脚本检查页 · 水平滚动查看四个场景；SVG 热点可直接点击</span><a href="index.html">返回体验</a></header><main>${svg}</main></body></html>`;
 fs.writeFileSync(path.join(root,'native.html'),native);
