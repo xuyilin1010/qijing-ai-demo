@@ -10,7 +10,7 @@
 <button id="generate">生成导入源码</button><button id="download" disabled>下载正文 HTML</button><button id="copy" disabled>复制源码文字</button>
 <p id="status" role="status">尚未生成。</p><textarea id="code" aria-label="导入源码" readonly></textarea>
 <p>以 135 编辑器为例：进入 HTML 模式 → 导入正文源码 → 预览 → 保存同步到公众号草稿。这里复制的是源码文字，不能直接粘贴到公众号的普通正文区域。</p>
-<p>依据：<a href="https://www.135editor.com/books/chapter/1/1330">135 官方 SVG 导入与同步教程</a>。第三方编辑器对本候选版的实际保留情况仍需验证。</p>
+<p>依据：<a href="https://www.135editor.com/books/chapter/1/1330">135 官方 SVG 导入与同步教程</a>。135 源码导入及完整导出后的浏览器运行已经验证；同步公众号草稿后的保留情况尚未验证。</p>
 <script>
 let result='';const status=document.querySelector('#status');
 const escapeAttr=v=>v.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll("'",'&#39;').replaceAll('<','&lt;').replaceAll('>','&gt;');

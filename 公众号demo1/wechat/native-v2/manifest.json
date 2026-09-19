@@ -11,5 +11,7 @@
   "assets": [
     "PANORAMA_WECHAT_URL",
     "NIGHT_WECHAT_URL"
-  ]
+  ],
+  "editorRoundtrip": "135 whole-source UI export and no-script browser rendering tested; HTML stylesheet must precede SVG",
+  "latestBrowserTestCommit": "8ceddba"
 }
