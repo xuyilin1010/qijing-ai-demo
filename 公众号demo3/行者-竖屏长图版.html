@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>贵烟（细支行者）SVG 交互推文原型</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; }
+  body { background: #05080d; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; color: #fff; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+  .phone { max-width: 430px; margin: 0 auto; background: #05080d; position: relative; }
+  .section { position: relative; width: 100%; min-height: 100vh; overflow: hidden; }
+  .section-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .section-bg.contain { background-size: contain; background-repeat: no-repeat; background-position: center; }
+  .section-content { position: relative; z-index: 2; width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 48px 28px; }
+  .cover-content { justify-content: center; align-items: center; text-align: center; }
+  .eyebrow { font-size: 13px; letter-spacing: 4px; color: #d4a855; margin-bottom: 12px; text-transform: uppercase; }
+  h1 { font-size: 42px; font-weight: 700; line-height: 1.15; margin-bottom: 16px; letter-spacing: 2px; }
+  h2 { font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+  .sub { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.85); max-width: 320px; }
+  .small { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.6); margin-top: 12px; }
+  .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); width: 48px; height: 64px; z-index: 3; pointer-events: none; }
+  .hint-text { position: absolute; bottom: 100px; left: 0; right: 0; text-align: center; font-size: 12px; color: rgba(255,255,255,0.65); letter-spacing: 2px; pointer-events: none; }
+
+  /* 三感切换 */
+  .sense-section { min-height: 120vh; background: #05080d; }
+  .sense-bg { background-image: url('assets/pdf-pages/hi_p15.jpg'); }
+  .sense-header { text-align: center; padding: 60px 28px 30px; }
+  .sense-tabs { display: flex; justify-content: center; gap: 24px; margin: 0 auto 40px; }
+  .sense-tab { cursor: pointer; }
+  .sense-cards { position: relative; width: 100%; height: 420px; }
+  .sense-card { position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 28px 48px; }
+  .sense-card.active { opacity: 1; }
+  .sense-card .card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .sense-card .card-text { position: relative; z-index: 2; }
+
+  /* 画像滚动 */
+  .persona-scroll { height: 300vh; scroll-snap-type: y mandatory; overflow-y: scroll; -webkit-overflow-scrolling: touch; }
+  .persona-page { height: 100vh; scroll-snap-align: start; position: relative; background-size: cover; background-position: center; }
+  .persona-text { position: absolute; left: 28px; right: 28px; bottom: 60px; }
+  .persona-label { font-size: 12px; color: #d4a855; letter-spacing: 3px; margin-bottom: 8px; }
+
+  /* CTA */
+  .cta-section { min-height: 60vh; background: #05080d; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 28px; }
+  .cta-buttons { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; justify-content: center; }
+  .cta-btn { padding: 12px 28px; border: 1px solid #d4a855; color: #d4a855; border-radius: 24px; font-size: 14px; text-decoration: none; background: rgba(212,168,85,0.08); }
+
+  /* 公众号提示 */
+  .wechat-tip { padding: 16px; background: #0f1520; font-size: 12px; color: rgba(255,255,255,0.5); text-align: center; }
+</style>
+</head>
+<body>
+  <div class="phone">
+
+    <!-- 模块 1：封面 -->
+    <section class="section" id="cover">
+      <div class="section-bg" style="background-image: url('assets/pdf-pages/hi_p02.jpg');"></div>
+      <div class="section-content cover-content">
+        <p class="eyebrow">贵烟（细支行者）</p>
+        <h1>心所向<br>行致远</h1>
+        <p class="sub">创享家品系首款力作<br>味觉拓疆者，再启程</p>
+      </div>
+      <div class="hint-text">上下滑动 · 开启旅程</div>
+      <svg class="scroll-hint" viewBox="0 0 48 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 48 L24 20">
+            <animateTransform attributeName="transform" type="translate" values="0,0; 0,-6; 0,0" dur="1.8s" repeatCount="indefinite"/>
+          </path>
+          <path d="M16 40 L24 48 L32 40">
+            <animateTransform attributeName="transform" type="translate" values="0,0; 0,-6; 0,0" dur="1.8s" repeatCount="indefinite"/>
+          </path>
+          <path d="M24 16 L24 16" opacity="0.5">
+            <animate attributeName="opacity" values="0.5;0.2;0.5" dur="1.8s" repeatCount="indefinite"/>
+          </path>
+        </g>
+      </svg>
+    </section>
+
+    <!-- 模块 2：产品介绍 3 页 -->
+    <section class="section" id="intro1">
+      <div class="section-bg" style="background-image: url('assets/pdf-pages/hi_p03.jpg');"></div>
+      <div class="section-content">
+        <p class="eyebrow">文化核心</p>
+        <h2>心所向 行致远</h2>
+        <p class="sub">以心确立方向，以行抵达远方。<br>每一口，都是知行合一的笃定。</p>
+      </div>
+    </section>
+
+    <section class="section" id="intro2">
+      <div class="section-bg" style="background-image: url('assets/pdf-pages/hi_p06.jpg');"></div>
+      <div class="section-content">
+        <p class="eyebrow">产品定位</p>
+        <h2>第一包<br>「冰咖啡」爆珠</h2>
+        <p class="sub">冰感 × 咖啡醇香<br>味觉拓疆者，先尝为敬</p>
+      </div>
+    </section>
+
+    <section class="section" id="intro3" style="background: #f7f2e8;">
+      <div class="section-bg contain" style="background-image: url('assets/pdf-pages/hi_p07.jpg');"></div>
+      <div class="section-content" style="color: #3a2e1f;">
+        <p class="eyebrow" style="color:#8b6914;">产品名片</p>
+        <h2 style="color:#2c2110;">贵烟（细支行者）</h2>
+        <p class="sub" style="color:#4a3b28;">花名：山咖咖 / 冰小咖 / 冰行者</p>
+        <p class="small" style="color:#6b5a44;">焦油量 7mg · 烟碱量 0.7mg · 一氧化碳 5mg</p>
+      </div>
+    </section>
+
+    <!-- 模块 3：三感切换（SVG 交互） -->
+    <section class="section sense-section" id="senses">
+      <div class="section-bg sense-bg"></div>
+      <div class="sense-header">
+        <p class="eyebrow">一度三感 · 味觉新境</p>
+        <h2 style="margin-bottom:8px;">点击切换，体验三重境界</h2>
+      </div>
+
+      <svg width="100%" height="120" viewBox="0 0 375 120" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- 观感 -->
+        <g id="tab-guan" transform="translate(62,60)" cursor="pointer" filter="url(#glow)">
+          <circle r="32" fill="rgba(0,0,0,0.45)" stroke="#d4a855" stroke-width="2"/>
+          <text y="5" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">观感</text>
+        </g>
+        <!-- 口感 -->
+        <g id="tab-kou" transform="translate(187,60)" cursor="pointer">
+          <circle r="32" fill="rgba(0,0,0,0.45)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <text y="5" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">口感</text>
+        </g>
+        <!-- 情感 -->
+        <g id="tab-qing" transform="translate(312,60)" cursor="pointer">
+          <circle r="32" fill="rgba(0,0,0,0.45)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <text y="5" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">情感</text>
+        </g>
+
+        <!-- 高亮状态切换：观感激活动画 -->
+        <set href="#tab-guan" attributeName="filter" to="none" begin="tab-kou.click; tab-qing.click" fill="freeze"/>
+        <set href="#tab-guan" attributeName="filter" to="url(#glow)" begin="tab-guan.click" fill="freeze"/>
+        <set href="#tab-guan circle" attributeName="stroke" to="rgba(255,255,255,0.3)" begin="tab-kou.click; tab-qing.click" fill="freeze"/>
+        <set href="#tab-guan circle" attributeName="stroke" to="#d4a855" begin="tab-guan.click" fill="freeze"/>
+
+        <set href="#tab-kou" attributeName="filter" to="none" begin="tab-guan.click; tab-qing.click" fill="freeze"/>
+        <set href="#tab-kou" attributeName="filter" to="url(#glow)" begin="tab-kou.click" fill="freeze"/>
+        <set href="#tab-kou circle" attributeName="stroke" to="rgba(255,255,255,0.3)" begin="tab-guan.click; tab-qing.click" fill="freeze"/>
+        <set href="#tab-kou circle" attributeName="stroke" to="#d4a855" begin="tab-kou.click" fill="freeze"/>
+
+        <set href="#tab-qing" attributeName="filter" to="none" begin="tab-guan.click; tab-kou.click" fill="freeze"/>
+        <set href="#tab-qing" attributeName="filter" to="url(#glow)" begin="tab-qing.click" fill="freeze"/>
+        <set href="#tab-qing circle" attributeName="stroke" to="rgba(255,255,255,0.3)" begin="tab-guan.click; tab-kou.click" fill="freeze"/>
+        <set href="#tab-qing circle" attributeName="stroke" to="#d4a855" begin="tab-qing.click" fill="freeze"/>
+      </svg>
+
+      <div class="sense-cards">
+        <!-- 观感卡 -->
+        <div class="sense-card active" id="card-guan" style="background: linear-gradient(180deg, rgba(5,8,13,0) 0%, rgba(5,8,13,0.7) 100%);">
+          <div class="card-bg" style="background-image: url('assets/pdf-pages/hi_p09.jpg'); opacity: 0.7;"></div>
+          <div class="card-text">
+            <p class="eyebrow">观感</p>
+            <h2>先锋设计</h2>
+            <p class="sub">承袭行者经典黄黑配色<br>植绒视窗 · 日照金山<br>每一次注目，都是不凡</p>
+          </div>
+        </div>
+        <!-- 口感卡 -->
+        <div class="sense-card" id="card-kou">
+          <div class="card-bg" style="background-image: url('assets/pdf-pages/hi_p12.jpg');"></div>
+          <div class="card-text">
+            <p class="eyebrow">口感</p>
+            <h2>冰咖爆珠</h2>
+            <p class="sub">3.5mm 大径爆珠<br>薄荷精粹与咖啡醇厚交织<br>一捏即享冰爽醇香</p>
+          </div>
+        </div>
+        <!-- 情感卡 -->
+        <div class="sense-card" id="card-qing">
+          <div class="card-bg" style="background-image: url('assets/pdf-pages/hi_p14.jpg');"></div>
+          <div class="card-text">
+            <p class="eyebrow">情感</p>
+            <h2>行者共鸣</h2>
+            <p class="sub">行者之名，焕新再启<br>追逐梦想、敢于探索、向往自由</p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function(){
+          function show(id){
+            ['guan','kou','qing'].forEach(function(k){
+              document.getElementById('card-'+k).classList.toggle('active', id===k);
+            });
+          }
+          document.getElementById('tab-guan').addEventListener('click', function(){ show('guan'); });
+          document.getElementById('tab-kou').addEventListener('click', function(){ show('kou'); });
+          document.getElementById('tab-qing').addEventListener('click', function(){ show('qing'); });
+        })();
+      </script>
+    </section>
+
+    <!-- 模块 4：消费群体画像 -->
+    <section class="section" id="personas" style="min-height: auto;">
+      <div style="padding: 60px 28px 30px; text-align: center; background: #05080d;">
+        <p class="eyebrow">消费群体画像</p>
+        <h2>三大先锋圈层</h2>
+        <p class="sub" style="margin: 0 auto;">19-50 岁都市先锋人群<br>谁与行者同频？</p>
+      </div>
+      <div class="persona-scroll">
+        <div class="persona-page" style="background-image: url('assets/pdf-pages/hi_p16.jpg');">
+          <div class="persona-text">
+            <p class="persona-label">户外探索型</p>
+            <h2>脚踩泥土<br>心才落地</h2>
+            <p class="sub">徒步、自驾、露营<br>在自然中找回自己的呼吸</p>
+          </div>
+        </div>
+        <div class="persona-page" style="background-image: url('assets/pdf-pages/hi_p17.jpg');">
+          <div class="persona-text">
+            <p class="persona-label">品质创新型</p>
+            <h2>品质从不妥协</h2>
+            <p class="sub">专注深耕、死磕细节<br>在别人看不见的地方用力</p>
+          </div>
+        </div>
+        <div class="persona-page" style="background-image: url('assets/pdf-pages/hi_p18.jpg');">
+          <div class="persona-text">
+            <p class="persona-label">潮流先锋型</p>
+            <h2>我的咖啡<br>不做第二杯</h2>
+            <p class="sub">引领生活方式、社交分享<br>让一群人跟着你喝</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 模块 5：品牌价值 -->
+    <section class="section" id="values">
+      <div class="section-bg" style="background-image: url('assets/pdf-pages/hi_p19.jpg');"></div>
+      <div class="section-content" style="justify-content: center; align-items: center; text-align: center;">
+        <p class="eyebrow">消费群体特征关键词</p>
+        <h2>梦想 · 探索 · 自由</h2>
+        <p class="sub">追逐梦想 敢于探索 向往自由<br>知行合一便是自由</p>
+      </div>
+    </section>
+
+    <section class="section" id="value1">
+      <div class="section-bg" style="background-image: url('assets/pdf-pages/hi_p21.jpg');"></div>
+      <div class="section-content">
+        <p class="eyebrow">追逐梦想</p>
+        <h2>身有限而思无限</h2>
+        <p class="sub">梦想不在远方，在你本心<br>立下「我想成为谁」的志<br>便是点燃此心光明的那盏灯</p>
+      </div>
+    </section>
+
+    <section class="section" id="value2">
+      <div class="section-bg" style="background-image: url('assets/pdf-pages/hi_p22.jpg');"></div>
+      <div class="section-content" style="align-items: flex-end; text-align: right;">
+        <p class="eyebrow">敢于探索</p>
+        <h2>疆有界而行无界</h2>
+        <p class="sub">别让梦想只停留在脑海里<br>在行动中验证，在坎坷中磨练<br>你走的每一步，都是成为自己</p>
+      </div>
+    </section>
+
+    <section class="section" id="value3">
+      <div class="section-bg" style="background-image: url('assets/pdf-pages/hi_p23.jpg');"></div>
+      <div class="section-content" style="justify-content: center; align-items: center; text-align: center;">
+        <p class="eyebrow">向往自由</p>
+        <h2>生有涯而心无涯</h2>
+        <p class="sub">真正的自由，不是想做什么就做什么<br>而是不想做什么，就能不做什么<br>你便成了最高级的自由</p>
+      </div>
+    </section>
+
+    <!-- 模块 6：CTA -->
+    <section class="cta-section" id="cta">
+      <p class="eyebrow">与行者同频</p>
+      <h2>即刻启程</h2>
+      <p class="sub">点击了解更多行者故事</p>
+      <div class="cta-buttons">
+        <a class="cta-btn" href="#">了解更多</a>
+        <a class="cta-btn" href="#">视频号</a>
+        <a class="cta-btn" href="#">小程序</a>
+      </div>
+    </section>
+
+    <div class="wechat-tip">
+      原型仅供预览 · 正式发布前请替换为公众号素材库图片并接入视频号/小程序组件
+    </div>
+
+  </div>
+</body>
+</html>
