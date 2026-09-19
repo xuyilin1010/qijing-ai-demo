@@ -75,7 +75,7 @@ ${heading('nightTitle1','nightTitle2',3535,244,67)}
 ${text('nightBody1',3540,413,26)}${text('nightBody2',3540,454,26)}
 <g id="cl_star_on" class="cl-hit" role="button" tabindex="0" aria-label="点亮星空"><rect class="cl-hover" x="3540" y="507" width="330" height="78" rx="39" fill="#081c32" fill-opacity=".58" stroke="#d5bf96" stroke-opacity=".7"/><path d="m3573 535 4 10 10 3-10 3-4 10-3-10-11-3 11-3Z" fill="#f0d7a3"/>${text('starButton',3603,557,25)}</g>
 <g id="cl_star_off" class="cl-hit" role="button" tabindex="0" aria-label="重置星空"><rect x="3885" y="507" width="112" height="78" fill="transparent"/><text x="3910" y="555" font-size="24" fill="#c9d8e4">重置</text></g>
-<g id="cl_constellation" visibility="hidden" pointer-events="none"><set attributeName="visibility" to="visible" begin="cl_star_on.click" end="cl_star_off.click"/>
+<g id="cl_constellation" visibility="hidden" pointer-events="none" transform="translate(816 332) scale(.7)"><set attributeName="visibility" to="visible" begin="cl_star_on.click" end="cl_star_off.click"/>
  <path d="M4020 454 4110 340 4240 373 4375 263 4490 313 4570 217" fill="none" stroke="#e8cea0" stroke-width="1.4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="0"><animate attributeName="stroke-dashoffset" from="1" to="0" dur="${config.motion.starsSeconds}s" begin="cl_star_on.click" end="cl_star_off.click" fill="freeze"/></path>
  ${[[4020,454],[4110,340],[4240,373],[4375,263],[4490,313],[4570,217]].map(([x,y],i)=>`<g><circle cx="${x}" cy="${y}" r="15" fill="#eacb92" opacity=".1"/><circle cx="${x}" cy="${y}" r="3.5" fill="#fff3d5"/><animate attributeName="opacity" from="0" to="1" dur=".7s" begin="cl_star_on.click+${i*.24}s" fill="freeze"/></g>`).join('')}
 </g>
