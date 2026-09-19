@@ -1,5 +1,20 @@
-/* Legacy mobile viewport fallbacks: retain a visible cover before assets load. */
+/* Scroll container stays in device coordinates; only artwork is rotated. */
 #cover{height:100vh;height:100svh;background:linear-gradient(155deg,#173f62,#07182f 65%,#42362c)}
 dialog{max-height:90vh;max-height:90svh}
 dialog:not([open]){display:none}
-@media(orientation:portrait){#experience{width:100vh;height:100vw;width:100dvh;height:100dvw}}
+#experience{inset:0;left:0;top:0;width:100%;height:100%;transform:none}
+#viewport{overflow-x:auto;overflow-y:hidden;touch-action:pan-x pinch-zoom;-webkit-overflow-scrolling:touch;cursor:grab}
+#viewport.dragging{cursor:grabbing;user-select:none}
+#scrollTrack{position:relative;height:100%;width:calc(100vh * 4800 / 900);width:calc(100dvh * 4800 / 900)}
+#scrollTrack>svg{display:block;position:absolute;top:0;left:0;width:100%;height:100%;max-width:none;user-select:none;-webkit-user-select:none}
+.topbar,.journey-foot{pointer-events:none}.topbar button,.journey-foot button{pointer-events:auto}
+.reading-progress{height:2px;width:34%;background:#a4bdd133;overflow:hidden}.reading-progress span{display:block;width:100%;height:100%;background:#e5c58e;transform:scaleX(0);transform-origin:left}
+.scroll-instruction{font-size:10px;letter-spacing:2px}
+@media(orientation:portrait){
+ #experience{inset:0;width:100%;height:100%;transform:none}
+ #viewport{overflow-x:hidden;overflow-y:auto;touch-action:pan-y pinch-zoom}
+ #scrollTrack{width:100%;height:calc(100vw * 4800 / 900)}
+ #scrollTrack>svg{left:100%;width:calc(100vw * 4800 / 900);height:100vw;transform-origin:0 0;transform:rotate(90deg)}
+ .topbar{padding:8px 9px}.topbar button{font-size:10px;padding:10px 4px}.topbar span{font-size:9px;letter-spacing:0}
+ .journey-foot{padding:5px 14px}.hint{font-size:9px;letter-spacing:0}
+}

@@ -4,13 +4,23 @@ const cover=$('cover'),experience=$('experience'),viewport=$('viewport'),editor=
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function apply(){document.querySelectorAll('[data-key]').forEach(el=>{if(typeof cfg[el.dataset.key]==='string')el.textContent=cfg[el.dataset.key]});for(const [key,value] of Object.entries(cfg.assets)){if(value.startsWith('data:image/')){document.querySelectorAll(`[data-asset="${key}"]`).forEach(el=>el.setAttribute('href',value));if(key==='panorama')document.querySelector('[data-cover]').src=value}}if(reduced)document.querySelectorAll('animate').forEach(el=>el.setAttribute('dur','.001s'))}
 apply();
-function go(n){const scale=$('journeyArt').clientHeight/900;viewport.scrollTo({left:[0,1200,2350,3450][n]*scale,behavior:reduced?'instant':'smooth'})}
-$('enter').onclick=()=>{cover.hidden=true;experience.hidden=false;viewport.scrollLeft=0;if(matchMedia('(orientation: portrait)').matches)$('rotateHint').hidden=false};
+const portrait=()=>matchMedia('(orientation: portrait)').matches;
+let readingPosition=0;
+function updateProgress(){const vertical=portrait();const length=vertical?viewport.scrollHeight-viewport.clientHeight:viewport.scrollWidth-viewport.clientWidth;readingPosition=length>0?(vertical?viewport.scrollTop:viewport.scrollLeft)/length:0;$('readingProgress').style.transform=`scaleX(${readingPosition})`;document.querySelector('.reading-progress').setAttribute('aria-valuenow',Math.round(readingPosition*100));document.querySelector('.hint').textContent=readingPosition>.99?'旅程到这里，风景仍继续':vertical?'横握手机 · 向上滑动继续':'向左滑动 · 继续探索'}
+function resetScroll(){viewport.scrollTop=0;viewport.scrollLeft=0;readingPosition=0;updateProgress()}
+$('enter').onclick=()=>{cover.hidden=true;experience.hidden=false;resetScroll()};
 $('ready').onclick=()=>{$('rotateHint').hidden=true};
 $('home').onclick=()=>{experience.hidden=true;cover.hidden=false};
-$('reset').onclick=()=>{const art=$('journeyArt');art.replaceWith(art.cloneNode(true));apply();go(0)};
-document.querySelectorAll('[data-scene]').forEach(b=>b.onclick=()=>go(Number(b.dataset.scene)));
-viewport.addEventListener('scroll',()=>{const scale=$('journeyArt').clientHeight/900;const pos=viewport.scrollLeft/scale;const n=pos>3000?3:pos>1800?2:pos>650?1:0;document.querySelectorAll('[data-scene]').forEach(b=>b.classList.toggle('active',Number(b.dataset.scene)===n))},{passive:true});
+$('reset').onclick=()=>{const art=$('journeyArt');art.replaceWith(art.cloneNode(true));apply();resetScroll()};
+viewport.addEventListener('scroll',updateProgress,{passive:true});
+viewport.addEventListener('wheel',e=>{if(portrait()||e.ctrlKey||Math.abs(e.deltaX)>=Math.abs(e.deltaY))return;e.preventDefault();viewport.scrollLeft+=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?viewport.clientWidth:1)},{passive:false});
+let drag=null,suppressClick=false;
+viewport.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'||e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,left:viewport.scrollLeft,top:viewport.scrollTop,moved:false};suppressClick=false});
+viewport.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(!drag.moved&&Math.hypot(dx,dy)<6)return;drag.moved=true;viewport.setPointerCapture(e.pointerId);viewport.classList.add('dragging');if(portrait())viewport.scrollTop=drag.top-dy;else viewport.scrollLeft=drag.left-dx});
+function endDrag(e){if(!drag||e.pointerId!==drag.id)return;suppressClick=drag.moved;drag=null;viewport.classList.remove('dragging');if(viewport.hasPointerCapture(e.pointerId))viewport.releasePointerCapture(e.pointerId)}
+viewport.addEventListener('pointerup',endDrag);viewport.addEventListener('pointercancel',endDrag);
+viewport.addEventListener('click',e=>{if(suppressClick){e.preventDefault();e.stopImmediatePropagation();suppressClick=false}},true);
+let previousPortrait=portrait();window.addEventListener('resize',()=>{const nextPortrait=portrait();if(nextPortrait!==previousPortrait){const saved=readingPosition;previousPortrait=nextPortrait;requestAnimationFrame(()=>{viewport.scrollTop=nextPortrait?saved*(viewport.scrollHeight-viewport.clientHeight):0;viewport.scrollLeft=nextPortrait?0:saved*(viewport.scrollWidth-viewport.clientWidth);updateProgress()})}});
 viewport.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('.cl-hit')){e.preventDefault();e.target.closest('.cl-hit').dispatchEvent(new MouseEvent('click',{bubbles:true}))}});
 const labels={title:'作品名称',eyebrow:'英文副标题',intro:'开场短句',entry:'开始按钮',coastLabel:'海岸 · 章节',coastTitle1:'海岸 · 标题上行',coastTitle2:'海岸 · 标题下行',coastBody1:'海岸 · 正文上行',coastBody2:'海岸 · 正文下行',coastButton:'海岸 · 按钮',duneLabel:'沙丘 · 章节',duneTitle1:'沙丘 · 标题上行',duneTitle2:'沙丘 · 标题下行',duneBody1:'沙丘 · 正文上行',duneBody2:'沙丘 · 正文下行',noteButton:'短笺 · 按钮',noteLabel:'短笺 · 英文',noteTitle:'短笺 · 标题',noteBody1:'短笺 · 正文上行',noteBody2:'短笺 · 正文下行',canyonLabel:'峡谷 · 章节',canyonTitle1:'峡谷 · 标题上行',canyonTitle2:'峡谷 · 标题下行',canyonBody:'峡谷 · 正文',mountainLabel:'换景 · 山按钮',waterLabel:'换景 · 水按钮',skyLabel:'换景 · 天空按钮',mountainTitle:'山 · 图注',waterTitle:'水 · 图注',skyTitle:'天空 · 图注',nightLabel:'星空 · 章节',nightTitle1:'星空 · 标题上行',nightTitle2:'星空 · 标题下行',nightBody1:'星空 · 正文上行',nightBody2:'星空 · 正文下行',starButton:'星空 · 按钮',closing:'结尾短句'};
 for(const [key,value]of Object.entries(cfg)){if(typeof value!=='string')continue;const label=document.createElement('label');label.textContent=labels[key]||key;const input=document.createElement('input');input.value=value;input.addEventListener('input',()=>{cfg[key]=input.value;apply()});label.append(input);$('fields').append(label)}
