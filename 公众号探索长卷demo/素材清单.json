@@ -1,0 +1,74 @@
+{
+  "version": 2,
+  "date": "2026-09-20",
+  "assets": [
+    {
+      "file": "assets/canyon.png",
+      "bytes": 2009891,
+      "width": 1672,
+      "height": 941,
+      "sha256": "e3966dbf1772501eaaeb1f6a8bd2c8d8a5a9bde5bcbcbb925ce8e63e2683fd0e"
+    },
+    {
+      "file": "assets/climb.png",
+      "bytes": 1983039,
+      "width": 1672,
+      "height": 941,
+      "sha256": "5f960269bb06b59cdb7532c07664456cc73334aa332c0cbf0f5954a907305737"
+    },
+    {
+      "file": "assets/cover.png",
+      "bytes": 2483143,
+      "width": 1672,
+      "height": 941,
+      "sha256": "99990a3e4fde1e0f2dcc8a5749176753a7f168a0ae7a0628f300725f013b7585"
+    },
+    {
+      "file": "assets/entry.png",
+      "bytes": 2384489,
+      "width": 941,
+      "height": 1672,
+      "sha256": "d0b80e2b31bcda2ad6801970ef2a6087f0351bb2a8b75634b2d58e84f5453223"
+    },
+    {
+      "file": "assets/product-placeholder.svg",
+      "bytes": 1177,
+      "sha256": "d46c71eb2f0f128ff766e4c0f14ea8b9a633d5ca440d4d81d51069156f47c328"
+    },
+    {
+      "file": "assets/run.png",
+      "bytes": 1634018,
+      "width": 1672,
+      "height": 941,
+      "sha256": "94dd84f925b63cac42a405a8a03406b1f85af39f1877d0453c8026dc32c7cd7d"
+    },
+    {
+      "file": "assets/stars.png",
+      "bytes": 2283135,
+      "width": 1672,
+      "height": 941,
+      "sha256": "626313159e27da20d9d7e090a0df58e6c70233090c3813a603c983ff0ef7e665"
+    },
+    {
+      "file": "assets/story-coffee.png",
+      "bytes": 2070768,
+      "width": 1024,
+      "height": 1536,
+      "sha256": "42b7942aca1ceddc90d9236211e3e302b24fca155098d73769669370a1899d3a"
+    },
+    {
+      "file": "assets/story-design.png",
+      "bytes": 1814413,
+      "width": 1024,
+      "height": 1536,
+      "sha256": "247e9c3886eafa4afb68860434e4b9306899b7857b3faf1dbd47964b5dc95c8b"
+    },
+    {
+      "file": "assets/story-outdoor.png",
+      "bytes": 2842503,
+      "width": 1024,
+      "height": 1536,
+      "sha256": "1b6f133647509613654692b77b8ac0fca0aa30eebd7187b46d55521088a90181"
+    }
+  ]
+}
