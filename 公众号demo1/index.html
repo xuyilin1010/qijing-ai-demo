@@ -57,7 +57,7 @@ button:focus:not(:focus-visible),.cl-hit:focus:not(:focus-visible),#cl_swipe:foc
  <mask id="cl_nightMask" maskUnits="userSpaceOnUse" x="3050" y="0" width="2950" height="900"><rect x="3050" width="2950" height="900" fill="url(#cl_nightFade)"/></mask>
  <linearGradient id="cl_path"><stop stop-color="#e9bd78"/><stop offset=".35" stop-color="#e9bd78"/><stop offset=".66" stop-color="#74c8ea"/><stop offset="1" stop-color="#dae7fd"/></linearGradient>
  <filter id="cl_glow" x="-30%" y="-150%" width="160%" height="400%"><feGaussianBlur stdDeviation="7"/></filter>
- <path id="cl_route" d="M120 735 C420 810 740 820 1000 770 S1400 680 1740 743 2100 860 2390 790 2780 700 3080 763 3470 821 3750 738 4200 699 4630 770"/>
+ <path id="cl_route" d="M120 735 C420 810 740 820 1000 770 S1400 680 1740 743 2100 860 2390 790 2780 700 3080 763 3470 821 3750 738 4200 699 4630 770 5200 830 5830 752"/>
  <clipPath id="cl_galleryClip"><rect x="2540" y="260" width="860" height="530" rx="3"/></clipPath>
  <clipPath id="cl_swipeClip"><rect x="3540" y="245" width="940" height="530" rx="3"/></clipPath>
  <style>.cl-hit{cursor:pointer;outline:none}.cl-hit:focus-visible{filter:drop-shadow(0 0 5px #e5ba75)}.cl-hit:hover .cl-hover{stroke:#fff;stroke-width:2}.cl-small{fill:#ddd;letter-spacing:1px}</style>
@@ -67,6 +67,7 @@ button:focus:not(:focus-visible),.cl-hit:focus:not(:focus-visible),#cl_swipe:foc
 <image data-asset="night" href="assets/night.webp" x="3050" y="0" width="2950" height="900" preserveAspectRatio="xMidYMid slice" mask="url(#cl_nightMask)"/>
 <rect width="6000" height="900" fill="url(#cl_shade)"/>
 <g fill="none" stroke="url(#cl_path)"><use href="#cl_route" stroke-width="7" opacity=".19" filter="url(#cl_glow)"/><use href="#cl_route" stroke-width="1.2" opacity=".45"/></g>
+<g id="cl_follow_route" pointer-events="none" visibility="hidden"><use id="cl_route_fill" href="#cl_route" fill="none" stroke="#edd3a0" stroke-width="3"/><g id="cl_route_marker"><circle r="24" fill="#ffe3a9" opacity=".12"/><circle r="12" fill="#ffe3a9" opacity=".28"/><circle r="5" fill="#fff3d9"/></g></g>
 <g data-motion="trail" visibility="hidden"><use href="#cl_route" fill="none" stroke="url(#cl_path)" stroke-width="2.4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="0"></use></g>
 <text data-key="coastLabel" x="95" y="162" font-size="21" fill="#d2b98c" letter-spacing="4">01 / 海岸 · 启程</text>
 <text data-key="coastTitle1" x="90" y="275" font-size="87" font-weight="650" letter-spacing="2">从这里</text><text data-key="coastTitle2" x="90" y="379.4" font-size="87" font-weight="650" letter-spacing="2">走向未知</text>
@@ -130,7 +131,11 @@ cover.addEventListener('click',e=>{if(!e.target.closest('[data-edit]'))openJourn
 $('ready').onclick=()=>{$('rotateHint').hidden=true};
 $('home').onclick=()=>{clearTimeout(entranceTimer);entranceTimer=null;experience.classList.remove('unfolding');cover.classList.remove('cover-leaving');experience.hidden=true;cover.hidden=false};
 $('reset').onclick=()=>{setStars(false);selectView('mountain');showSlide(0);$('cl_note_card').setAttribute('visibility','hidden');document.querySelector('[data-motion="trail"]').setAttribute('visibility','hidden');apply();resetScroll()};
-viewport.addEventListener('scroll',updateProgress,{passive:true});
+let routeFrame=0,routeLength=0;
+function followRoute(){routeFrame=0;const path=$('cl_route');if(!path)return;if(!routeLength)routeLength=path.getTotalLength();const distance=routeLength*Math.max(0,Math.min(1,readingPosition));const point=path.getPointAtLength(distance);$('cl_route_fill').setAttribute('stroke-dasharray',String(routeLength));$('cl_route_fill').setAttribute('stroke-dashoffset',String(routeLength-distance));$('cl_route_marker').setAttribute('transform',`translate(${point.x} ${point.y})`);$('cl_follow_route').setAttribute('visibility','visible')}
+function scheduleRoute(){if(!routeFrame)routeFrame=requestAnimationFrame(followRoute)}
+viewport.addEventListener('scroll',()=>{updateProgress();scheduleRoute()},{passive:true});
+$('enter').addEventListener('click',scheduleRoute);cover.addEventListener('click',scheduleRoute);$('reset').addEventListener('click',scheduleRoute);
 viewport.addEventListener('wheel',e=>{if(e.defaultPrevented||portrait()||e.ctrlKey||Math.abs(e.deltaX)>=Math.abs(e.deltaY))return;e.preventDefault();viewport.scrollLeft+=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?viewport.clientWidth:1)},{passive:false});
 let drag=null,suppressClick=false;
 viewport.addEventListener('pointerdown',e=>{if(e.target.closest('#cl_swipe'))return;if(e.pointerType!=='mouse'||e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,left:viewport.scrollLeft,top:viewport.scrollTop,moved:false};suppressClick=false});

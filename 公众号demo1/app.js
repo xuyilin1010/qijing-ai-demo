@@ -15,7 +15,11 @@ cover.addEventListener('click',e=>{if(!e.target.closest('[data-edit]'))openJourn
 $('ready').onclick=()=>{$('rotateHint').hidden=true};
 $('home').onclick=()=>{clearTimeout(entranceTimer);entranceTimer=null;experience.classList.remove('unfolding');cover.classList.remove('cover-leaving');experience.hidden=true;cover.hidden=false};
 $('reset').onclick=()=>{setStars(false);selectView('mountain');showSlide(0);$('cl_note_card').setAttribute('visibility','hidden');document.querySelector('[data-motion="trail"]').setAttribute('visibility','hidden');apply();resetScroll()};
-viewport.addEventListener('scroll',updateProgress,{passive:true});
+let routeFrame=0,routeLength=0;
+function followRoute(){routeFrame=0;const path=$('cl_route');if(!path)return;if(!routeLength)routeLength=path.getTotalLength();const distance=routeLength*Math.max(0,Math.min(1,readingPosition));const point=path.getPointAtLength(distance);$('cl_route_fill').setAttribute('stroke-dasharray',String(routeLength));$('cl_route_fill').setAttribute('stroke-dashoffset',String(routeLength-distance));$('cl_route_marker').setAttribute('transform',`translate(${point.x} ${point.y})`);$('cl_follow_route').setAttribute('visibility','visible')}
+function scheduleRoute(){if(!routeFrame)routeFrame=requestAnimationFrame(followRoute)}
+viewport.addEventListener('scroll',()=>{updateProgress();scheduleRoute()},{passive:true});
+$('enter').addEventListener('click',scheduleRoute);cover.addEventListener('click',scheduleRoute);$('reset').addEventListener('click',scheduleRoute);
 viewport.addEventListener('wheel',e=>{if(e.defaultPrevented||portrait()||e.ctrlKey||Math.abs(e.deltaX)>=Math.abs(e.deltaY))return;e.preventDefault();viewport.scrollLeft+=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?viewport.clientWidth:1)},{passive:false});
 let drag=null,suppressClick=false;
 viewport.addEventListener('pointerdown',e=>{if(e.target.closest('#cl_swipe'))return;if(e.pointerType!=='mouse'||e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,left:viewport.scrollLeft,top:viewport.scrollTop,moved:false};suppressClick=false});

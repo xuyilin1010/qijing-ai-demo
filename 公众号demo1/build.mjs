@@ -29,7 +29,7 @@ const svg=`<svg id="journeyArt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="
  <mask id="cl_nightMask" maskUnits="userSpaceOnUse" x="3050" y="0" width="2950" height="900"><rect x="3050" width="2950" height="900" fill="url(#cl_nightFade)"/></mask>
  <linearGradient id="cl_path"><stop stop-color="#e9bd78"/><stop offset=".35" stop-color="#e9bd78"/><stop offset=".66" stop-color="#74c8ea"/><stop offset="1" stop-color="#dae7fd"/></linearGradient>
  <filter id="cl_glow" x="-30%" y="-150%" width="160%" height="400%"><feGaussianBlur stdDeviation="7"/></filter>
- <path id="cl_route" d="M120 735 C420 810 740 820 1000 770 S1400 680 1740 743 2100 860 2390 790 2780 700 3080 763 3470 821 3750 738 4200 699 4630 770"/>
+ <path id="cl_route" d="M120 735 C420 810 740 820 1000 770 S1400 680 1740 743 2100 860 2390 790 2780 700 3080 763 3470 821 3750 738 4200 699 4630 770 5200 830 5830 752"/>
  <clipPath id="cl_galleryClip"><rect x="2540" y="260" width="860" height="530" rx="3"/></clipPath>
  <clipPath id="cl_swipeClip"><rect x="3540" y="245" width="940" height="530" rx="3"/></clipPath>
  <style>.cl-hit{cursor:pointer;outline:none}.cl-hit:focus-visible{filter:drop-shadow(0 0 5px #e5ba75)}.cl-hit:hover .cl-hover{stroke:#fff;stroke-width:2}.cl-small{fill:#ddd;letter-spacing:1px}</style>
@@ -39,6 +39,7 @@ const svg=`<svg id="journeyArt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="
 <image data-asset="night" href="${imageAssets.night}" x="3050" y="0" width="2950" height="900" preserveAspectRatio="xMidYMid slice" mask="url(#cl_nightMask)"/>
 <rect width="6000" height="900" fill="url(#cl_shade)"/>
 <g fill="none" stroke="url(#cl_path)"><use href="#cl_route" stroke-width="7" opacity=".19" filter="url(#cl_glow)"/><use href="#cl_route" stroke-width="1.2" opacity=".45"/></g>
+<g id="cl_follow_route" pointer-events="none" visibility="hidden"><use id="cl_route_fill" href="#cl_route" fill="none" stroke="#edd3a0" stroke-width="3"/><g id="cl_route_marker"><circle r="24" fill="#ffe3a9" opacity=".12"/><circle r="12" fill="#ffe3a9" opacity=".28"/><circle r="5" fill="#fff3d9"/></g></g>
 <g data-motion="trail" visibility="hidden"><set attributeName="visibility" to="visible" begin="cl_depart.click"/><use href="#cl_route" fill="none" stroke="url(#cl_path)" stroke-width="2.4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="0"><animate attributeName="stroke-dashoffset" from="1" to="0" dur="${config.motion.trailSeconds}s" begin="cl_depart.click" fill="freeze"/></use></g>
 ${label('coastLabel',95,162)}
 ${heading('coastTitle1','coastTitle2',90,275,87)}
