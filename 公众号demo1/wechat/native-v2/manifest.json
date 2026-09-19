@@ -1,0 +1,15 @@
+{
+  "date": "2026-09-20",
+  "stage": "candidate-not-wechat-verified",
+  "scripts": false,
+  "image_elements": 0,
+  "background_images": 9,
+  "cover": "native width expansion 2.4s and immediate cover removal",
+  "journal": "native HTML vertical scroll inside foreignObject; physical cross-axis after rotation",
+  "routes": "static; no scroll-follow claim",
+  "publishing": "source import + editor sync, not normal paste",
+  "assets": [
+    "PANORAMA_WECHAT_URL",
+    "NIGHT_WECHAT_URL"
+  ]
+}
