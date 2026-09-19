@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SVG 传输检查 · 开发测试</title>
+<style>body{max-width:1100px;margin:24px auto;padding:20px;font:16px/1.65 system-ui;background:#eef2f6;color:#152b42}h1{font-size:26px}button,a{margin:6px}button{padding:12px 18px;cursor:pointer}textarea{display:block;width:98%;height:120px;font:12px monospace}.columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}iframe{width:100%;height:620px;border:1px solid #acb9c9;background:white}#paste{min-height:65px;padding:20px;background:white;border:2px dashed #46688a}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;padding:16px}small{color:#566b80}@media(max-width:700px){.columns{display:block}}</style>
+<h1>SVG 传输检查</h1>
+<p>这页只检查浏览器复制与粘贴，不能替代公众号草稿测试。所有图片均为本项目旅行素材。</p>
+<button id="copy-async">复制固定样本（Clipboard API）</button><button id="copy-native">复制固定样本（选区）</button><button id="read-normal">读取剪贴板 HTML</button><button id="read-raw">读取未清洗 HTML（支持时）</button>
+<p id="status" role="status">待测试</p>
+<div id="paste" contenteditable="true" role="textbox" aria-label="粘贴取证区">点这里，然后粘贴固定样本</div>
+<pre id="report">尚未捕获粘贴内容。</pre>
+<div class="columns"><section><h2>原始样本</h2><iframe id="original" title="原始 SVG 样本" sandbox="allow-same-origin"></iframe></section><section><h2>传输后的样本</h2><iframe id="received" title="传输后的 SVG 样本" sandbox="allow-same-origin"></iframe></section></div>
+<details><summary>原始 HTML</summary><textarea id="source" readonly></textarea></details>
+<details><summary>接收到的 HTML</summary><textarea id="raw" readonly></textarea></details>
+<div id="selectable" style="position:absolute;left:-3000px;width:320px"></div>
+<script>
+const img = new URL('../night.jpg',location.href).href;
+const source = `<section style="font:16px sans-serif;color:#ffffff;background:#102d4f;padding:12px">
+<p>A 普通图片</p><img src="${img}" style="width:120px;height:65px;object-fit:cover">
+<p>B SVG image</p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="240" height="90" viewBox="0 0 240 90"><rect width="240" height="90" fill="#294e6b"/><image href="${img}" xlink:href="${img}" width="240" height="90" preserveAspectRatio="xMidYMid slice"/></svg>
+<p>C SVG CSS background</p><svg xmlns="http://www.w3.org/2000/svg" width="240" height="90" viewBox="0 0 240 90" style="background-image:url('${img}');background-size:cover;background-position:center;display:block"></svg>
+<p>D 点击左圆：无 ID 事件；点击右圆：ID 事件</p><svg xmlns="http://www.w3.org/2000/svg" width="280" height="100" viewBox="0 0 280 100"><circle cx="65" cy="45" r="40" fill="#e9c482" style="cursor:pointer"><set attributeName="fill" to="#48c9ff" begin="click" fill="freeze"/></circle><circle id="lab_target" cx="205" cy="45" r="40" fill="#e9c482" style="cursor:pointer"><set attributeName="fill" to="#48c9ff" begin="lab_target.click" fill="freeze"/></circle></svg>
+<p>E 自动光圈（SVG animate）</p><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="33" fill="none" stroke="#e9c482" stroke-width="4" stroke-dasharray="28 20"><animate attributeName="stroke-dashoffset" values="0;96" dur="3s" repeatCount="indefinite"/></circle></svg>
+</section>`;
+const wrap = value => '<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="script-src \'none\'"><body style="margin:0">'+value;
+document.querySelector('#original').srcdoc=wrap(source);
+document.querySelector('#source').value=source;
+document.querySelector('#selectable').innerHTML=source;
+const status=document.querySelector('#status');
+function stats(value){const d=new DOMParser().parseFromString(value,'text/html');return {bytes:new TextEncoder().encode(value).length,svg:d.querySelectorAll('svg').length,img:d.querySelectorAll('img').length,image:d.querySelectorAll('image').length,set:d.querySelectorAll('set').length,animate:d.querySelectorAll('animate').length,ids:[...d.querySelectorAll('[id]')].map(x=>x.id),begin:[...d.querySelectorAll('[begin]')].map(x=>x.getAttribute('begin')),imageAttrs:[...d.querySelectorAll('image')].map(x=>({href:x.getAttribute('href'),xlink:x.getAttribute('xlink:href')})),backgrounds:[...d.querySelectorAll('[style]')].filter(x=>x.style.backgroundImage).length};}
+function show(value,stage){document.querySelector('#raw').value=value;document.querySelector('#received').srcdoc=wrap(value);document.querySelector('#report').textContent=JSON.stringify({stage,original:stats(source),received:stats(value)},null,2);status.textContent=stage+'：已记录';}
+document.querySelector('#copy-async').onclick=async()=>{try{await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([source],{type:'text/html'}),'text/plain':new Blob(['SVG 固定样本'],{type:'text/plain'})})]);status.textContent='Clipboard API 写入完成，请粘贴到取证区。';}catch(e){status.textContent=e.name+': '+e.message;}};
+document.querySelector('#copy-native').onclick=()=>{const r=document.createRange();r.selectNodeContents(document.querySelector('#selectable'));const s=getSelection();s.removeAllRanges();s.addRange(r);const ok=document.execCommand('copy');s.removeAllRanges();status.textContent=ok?'选区复制完成，请粘贴到取证区。':'选区复制失败';};
+document.querySelector('#paste').addEventListener('paste',e=>{e.preventDefault();const value=e.clipboardData.getData('text/html');show(value,'paste event');e.currentTarget.textContent='已捕获 '+value.length+' 字符 HTML（纯文本 '+e.clipboardData.getData('text/plain').length+' 字符）';});
+async function read(raw){try{const items=await navigator.clipboard.read(raw?{unsanitized:['text/html']}:undefined);const item=items.find(x=>x.types.includes('text/html'));if(!item)throw Error('剪贴板没有 HTML，类型：'+items.flatMap(x=>x.types));show(await (await item.getType('text/html')).text(),raw?'clipboard read unsanitized':'clipboard read default');}catch(e){status.textContent=e.name+': '+e.message;}}
+document.querySelector('#read-normal').onclick=()=>read(false);document.querySelector('#read-raw').onclick=()=>read(true);
+</script></html>
