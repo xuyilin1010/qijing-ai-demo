@@ -1,0 +1,10 @@
+{
+  "version":"V4 通用探索主题横幅长卷",
+  "desktop":{"viewport":"1280x720","canvas":"8960x720","dragOffset":580,"visibleSections":["探索序言","星空"]},
+  "portrait":{"viewport":"390x844","surface":"390x5908","rotation":"whole canvas 90deg","exploreButtonOffset":692},
+  "background":{"sharedLayers":1,"allSectionsTransparent":true,"sequence":["光环","星空","攀登","奔跑","深蓝夜色延伸"]},
+  "videoPlaceholders":{"count":3,"aspectRatio":"16 / 9"},
+  "storyGesture":{"before":"品质创造者故事","after":"生活创作者故事","scrollBefore":4583,"scrollAfter":4583},
+  "scope":"不含烟草品牌和产品推广的通用探索主题",
+  "limits":["使用浏览器手机尺寸验证，未在真实手机微信内验证","独立 H5，非公众号原生无脚本 SVG","视频、联系方式为占位"]
+}
