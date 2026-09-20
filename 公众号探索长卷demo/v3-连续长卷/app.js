@@ -19,7 +19,6 @@
     stage.style.setProperty('--panel-height', `${panelHeight}px`);
     stage.classList.toggle('is-rotated', rotated);
     stage.dataset.mode = mode;
-    $$('.screen-choice [data-mode]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
     $('#change-mode').textContent = mode === 'immersive' ? '适应屏幕' : '横屏沉浸';
     $('.scroll-invitation').firstChild.textContent = rotated ? '沿着风景 · 向右继续 ' : '沿着风景 · 向下继续 ';
     viewWidth = innerWidth; viewHeight = innerHeight;
@@ -46,7 +45,7 @@
     announce(`人物故事 ${story + 1}/3，${names[story]}`);
   }
   function reveal() {
-    if (opening) return;
+    if (opening || entry.hidden) return;
     opening = true; entry.classList.add('is-leaving'); $('#enter').disabled = true;
     setMoment(0); setStory(0);
     setTimeout(() => {
@@ -62,11 +61,11 @@
     document.body.classList.add('cover-open'); scrollTo(0, 0);
     $('#enter').focus({preventScroll:true}); announce('已返回封面');
   }
-  $('#enter').addEventListener('click', reveal);
+  // One cover-wide click target; the native button also supports Enter and Space.
+  entry.addEventListener('click', reveal);
   $('#back').addEventListener('click', returnToCover);
   $('#restart').addEventListener('click', returnToCover);
   $('#motion').addEventListener('click', () => setMotion(!paused));
-  $$('.screen-choice [data-mode]').forEach(b => b.addEventListener('click', () => { mode = b.dataset.mode; layout(); }));
   $('#change-mode').addEventListener('click', () => { mode = mode === 'immersive' ? 'adaptive' : 'immersive'; layout(true); });
   $$('[data-moment-go]').forEach(b => b.addEventListener('click', () => setMoment(Number(b.dataset.momentGo))));
   $$('[data-story-go]').forEach(b => b.addEventListener('click', () => setStory(Number(b.dataset.storyGo))));
