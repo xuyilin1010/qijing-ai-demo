@@ -11,7 +11,7 @@
     const previousHeight = document.documentElement.scrollHeight - innerHeight;
     const fraction = previousHeight > 0 ? scrollY / previousHeight : 0;
     const width = Math.min(document.documentElement.clientWidth, 1440);
-    const portrait = innerHeight > innerWidth;
+    const portrait = width <= 900 && innerHeight > innerWidth;
     const rotated = mode === 'immersive' && portrait;
     const panelWidth = rotated ? innerHeight - (width <= 900 ? 48 : 64) : width;
     const panelHeight = rotated ? width : portrait ? Math.max(width * 2, 740) : width * 9 / 16;
