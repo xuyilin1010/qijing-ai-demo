@@ -1,6 +1,6 @@
 {
   "width": 900,
-  "height": 13728,
+  "height": 13363,
   "images": [
     {
       "src": "cover/封面-V6.png",
@@ -28,6 +28,10 @@
     },
     {
       "src": "service-photos/home.png",
+      "loaded": true
+    },
+    {
+      "src": "story-photos/page8-montage-v2.png",
       "loaded": true
     },
     {
@@ -89,13 +93,13 @@
       "id": "screen-08",
       "name": "关怀落地",
       "y": 10298,
-      "height": 2100,
-      "scroll": 2100
+      "height": 1735,
+      "scroll": 1735
     },
     {
       "id": "screen-09",
       "name": "领取入口",
-      "y": 12398,
+      "y": 12033,
       "height": 1330,
       "scroll": 1330
     }
