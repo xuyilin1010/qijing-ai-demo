@@ -1,6 +1,6 @@
 {
   "width": 900,
-  "height": 14347,
+  "height": 14016,
   "images": [
     {
       "src": "cover/封面-V6.png",
@@ -61,41 +61,41 @@
       "id": "screen-04",
       "name": "电话视频医生",
       "y": 4050,
-      "height": 1550,
-      "scroll": 1550
+      "height": 1480,
+      "scroll": 1480
     },
     {
       "id": "screen-05",
       "name": "就医助行",
-      "y": 5600,
-      "height": 1438,
-      "scroll": 1438
+      "y": 5530,
+      "height": 1316,
+      "scroll": 1316
     },
     {
       "id": "screen-06",
       "name": "上门助浴",
-      "y": 7038,
-      "height": 1454,
-      "scroll": 1454
+      "y": 6846,
+      "height": 1332,
+      "scroll": 1332
     },
     {
       "id": "screen-07",
       "name": "居家养老",
-      "y": 8491,
-      "height": 2138,
-      "scroll": 2138
+      "y": 8178,
+      "height": 2120,
+      "scroll": 2120
     },
     {
       "id": "screen-08",
       "name": "关怀落地",
-      "y": 10629,
+      "y": 10298,
       "height": 2388,
       "scroll": 2388
     },
     {
       "id": "screen-09",
       "name": "领取入口",
-      "y": 13017,
+      "y": 12686,
       "height": 1330,
       "scroll": 1330
     }
