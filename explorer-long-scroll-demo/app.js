@@ -5,10 +5,14 @@
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let rotated=false,opening=false,story=0,drag=null,photoDrag=null,wheelUntil=0;
   let lastW=0,lastH=0;
+  let paintFrame=0;
+  function paint(){paintFrame=0;backdrop.render(position());}
+  function schedulePaint(){if(!paintFrame)paintFrame=requestAnimationFrame(paint);}
+  const backdrop=new PanoramaRenderer($('#panorama'),$$('#landscape-sources img'),schedulePaint);
   const position=()=>rotated?viewport.scrollTop:viewport.scrollLeft;
   const maximum=()=>rotated?viewport.scrollHeight-viewport.clientHeight:viewport.scrollWidth-viewport.clientWidth;
   function move(to,smooth=false){viewport.scrollTo({left:rotated?0:to,top:rotated?to:0,behavior:smooth&&!reduced.matches?'smooth':'instant'});}
-  function progress(){const fraction=maximum()>0?position()/maximum():0;$('#progress').style.transform=`${rotated?'scaleY':'scaleX'}(${Math.max(.008,fraction)})`;}
+  function progress(){const fraction=maximum()>0?position()/maximum():0;$('#progress').style.transform=`${rotated?'scaleY':'scaleX'}(${Math.max(.008,fraction)})`;schedulePaint();}
   function layout(preserve=false){
     const fraction=maximum()>0?position()/maximum():0;
     rotated=innerWidth<innerHeight;
@@ -17,6 +21,7 @@
     document.documentElement.style.setProperty('--ph',`${h}px`);
     experience.classList.toggle('rotated',rotated);
     lastW=innerWidth;lastH=innerHeight;
+    backdrop.resize(innerWidth,innerHeight,rotated);
     move(preserve?fraction*maximum():0);progress();
   }
   function setStory(index){
@@ -31,7 +36,6 @@
   function back(){experience.hidden=true;entry.hidden=false;drag=null;photoDrag=null;$('#enter').focus({preventScroll:true});}
   entry.addEventListener('click',reveal);
   $('#restart').addEventListener('click',back);
-  $('#explore-next').addEventListener('click',()=>move((rotated?innerHeight:innerWidth)*.82,true));
   $$('[data-story-open]').forEach(b=>b.addEventListener('click',()=>{setStory(Number(b.dataset.storyOpen));move((rotated?innerHeight:innerWidth)*5,true);}));
   $$('[data-story-go]').forEach(b=>b.addEventListener('click',()=>setStory(Number(b.dataset.storyGo))));
   $('#story-prev').addEventListener('click',()=>setStory(story-1));$('#story-next').addEventListener('click',()=>setStory(story+1));
