@@ -1,0 +1,21 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>循光而行 · 原生源码导入候选版</title>
+<style>body{font:16px/1.8 system-ui;max-width:800px;margin:30px auto;padding:20px;background:#eef2f7;color:#142a40}h1{font-size:26px}input,textarea{display:block;box-sizing:border-box;width:100%;padding:12px;margin:10px 0}textarea{height:220px;font:12px monospace}button,a.action{display:inline-block;padding:10px 18px;margin:8px 8px 8px 0;background:#163c5e;color:white;border:0;text-decoration:none;cursor:pointer}.note{padding:16px;background:#fff5de}#status{white-space:pre-wrap}</style>
+<h1>循光而行 · 原生源码导入候选版</h1>
+<p class="note">此版已调整图片承载、封面展开和三张图文滚动结构，仍需公众号保存后的真机验证。旧版普通复制粘贴已出现图片与交互丢失，请改走排版器的源码导入与同步草稿流程。</p>
+<a class="action" href="preview.html">预览无脚本候选版</a><a href="../research/findings.md">查看研究与验证记录</a>
+<p>上传两张素材至目标公众号可用的图片空间后，填写微信图片地址，生成供排版器 HTML 模式导入的正文。无需提供账号密码。</p>
+<p><a href="../panorama.jpg" download>景观 JPG</a> · <a href="../night.jpg" download>星空 JPG</a></p>
+<label>景观图片地址<input id="panorama" type="url" placeholder="https://mmbiz.qpic.cn/…"></label>
+<label>星空图片地址<input id="night" type="url" placeholder="https://mmbiz.qpic.cn/…"></label>
+<button id="generate">生成导入源码</button><button id="download" disabled>下载正文 HTML</button><button id="copy" disabled>复制源码文字</button>
+<p id="status" role="status">尚未生成。</p><textarea id="code" aria-label="导入源码" readonly></textarea>
+<p>以 135 编辑器为例：进入 HTML 模式 → 导入正文源码 → 预览 → 保存同步到公众号草稿。这里复制的是源码文字，不能直接粘贴到公众号的普通正文区域。</p>
+<p>依据：<a href="https://www.135editor.com/books/chapter/1/1330">135 官方 SVG 导入与同步教程</a>。135 源码导入及完整导出后的浏览器运行已经验证；同步公众号草稿后的保留情况尚未验证。</p>
+<script>
+let result='';const status=document.querySelector('#status');
+const escapeAttr=v=>v.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll("'",'&#39;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+function address(id){const raw=document.getElementById(id).value.trim();let u;try{u=new URL(raw)}catch{throw Error('请填写两张图片的完整 HTTPS 地址。')}if(u.protocol!=='https:'||!['mmbiz.qpic.cn','mmecoa.qpic.cn'].includes(u.hostname)||/[\s"'<>\\]/.test(raw))throw Error('请使用 mmbiz.qpic.cn 或 mmecoa.qpic.cn 的 HTTPS 图片地址。');return escapeAttr(u.href)}
+document.querySelector('#generate').onclick=async()=>{try{result='';document.querySelector('#download').disabled=true;document.querySelector('#copy').disabled=true;const a=address('panorama'),b=address('night');const response=await fetch('article-template.html');if(!response.ok)throw Error('模板加载失败，请稍后重试。');result=(await response.text()).replaceAll('{{PANORAMA_WECHAT_URL}}',a).replaceAll('{{NIGHT_WECHAT_URL}}',b);if(result.includes('{{')||/github\.io|<script|\son\w+=/i.test(result))throw Error('源码检查未通过。');document.querySelector('#code').value=result;document.querySelector('#download').disabled=false;document.querySelector('#copy').disabled=false;status.textContent='源码已生成。请通过排版器 HTML 模式导入，再同步草稿。此步骤尚未验证公众号保存结果。';}catch(e){status.textContent=e.message;}};
+document.querySelector('#download').onclick=()=>{const a=document.createElement('a'),u=URL.createObjectURL(new Blob([result],{type:'text/html;charset=utf-8'}));a.href=u;a.download='循光而行-源码导入候选.html';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
+document.querySelector('#copy').onclick=async()=>{try{await navigator.clipboard.writeText(result);status.textContent='源码文字已复制，请粘贴到排版器的 HTML 模式。';}catch{status.textContent='请用“下载正文 HTML”保存源码。'}};
+</script></html>

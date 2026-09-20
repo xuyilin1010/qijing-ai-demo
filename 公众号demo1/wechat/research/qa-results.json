@@ -1,0 +1,186 @@
+{
+  "date": "2026-09-20",
+  "environment": "Codex in-app browser, desktop with mobile viewport; not WeChat",
+  "browserTestCommit": "1f01bf1",
+  "scriptPolicy": "script-src 'none'; object-src 'none'",
+  "scriptCount": 0,
+  "checks": [
+    {
+      "name": "390px cover unfolds",
+      "result": "passed",
+      "initialHeight": 715,
+      "intermediateHeight": 752,
+      "finalApproxHeight": 2498,
+      "coverAfterClickHeight": 0
+    },
+    {
+      "name": "background pictures visible after foreignObject fix",
+      "result": "passed",
+      "evidence": "tool screenshots of coast, dunes, gallery and night"
+    },
+    {
+      "name": "tabs",
+      "result": "passed",
+      "sequence": [
+        "mountain",
+        "water",
+        "sky",
+        "mountain"
+      ],
+      "visibleLayersEachStep": 1
+    },
+    {
+      "name": "note",
+      "result": "passed",
+      "sequence": [
+        "visible",
+        "hidden"
+      ]
+    },
+    {
+      "name": "stars repeat",
+      "result": "passed",
+      "sequence": [
+        "visible",
+        "hidden",
+        "visible"
+      ]
+    },
+    {
+      "name": "native card keyboard scroll and snap",
+      "result": "passed",
+      "scrollTopSequence": [
+        0,
+        530,
+        1060,
+        530
+      ],
+      "clientHeight": 530,
+      "scrollHeight": 1590
+    },
+    {
+      "name": "orbit animated stroke",
+      "result": "passed",
+      "sampleOffsets": [
+        "-49.1347px",
+        "-21.6522px"
+      ]
+    },
+    {
+      "name": "320px cover width",
+      "result": "passed",
+      "viewport": 320,
+      "coverWidth": 320
+    },
+    {
+      "name": "template XML and references",
+      "result": "passed",
+      "duplicateIds": false,
+      "danglingEventTargets": false
+    },
+    {
+      "name": "135 source roundtrip",
+      "result": "passed with transformations",
+      "inputCommit": "4a747ad",
+      "svgCount": 11,
+      "animationCount": 40,
+      "foreignObjectCount": 7,
+      "directClickEventCount": 2
+    },
+    {
+      "name": "135 save/sync",
+      "result": "not completed",
+      "reason": "Actual login dialog appeared"
+    },
+    {
+      "name": "clipboard transport isolation",
+      "result": "inconclusive",
+      "reason": "Browser tool virtual clipboard had no data to paste; no evidence of which sanitizer removed the nodes"
+    },
+    {
+      "name": "WeChat draft and phone",
+      "result": "not tested",
+      "reason": "Prior explicit site safety denial; not bypassed"
+    },
+    {
+      "name": "135 complete source export rendered",
+      "result": "passed in browser only",
+      "inputCommit": "8ceddba",
+      "method": "source editor Control+A and Control+C; actual whole clipboard text",
+      "svgCount": 11,
+      "animationCount": 40,
+      "foreignObjectCount": 7,
+      "styleCount": 1,
+      "keyframeCount": 2,
+      "scripts": 0,
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "name": "135 normalization route namespace regression",
+      "result": "fixed and visually verified",
+      "cause": "style inside SVG caused subsequent geometry to enter HTML namespace",
+      "fix": "HTML style before SVG",
+      "svgGeometryNodes": 3,
+      "nonzeroBoxes": true
+    },
+    {
+      "name": "native scroll-linked route",
+      "result": "passed in supporting browser, WeChat unverified",
+      "mechanism": "CSS view timeline on own article, animation-range contain",
+      "headerHeight": 400,
+      "footerHeight": 800,
+      "articleHeight": 2497.760498046875,
+      "viewport": [
+        390,
+        844
+      ],
+      "samples": [
+        {
+          "scrollY": 0,
+          "progress": 0
+        },
+        {
+          "scrollY": 996,
+          "progress": 0.360391,
+          "expected": 0.3603907583
+        },
+        {
+          "scrollY": 2020,
+          "progress": 0.979586
+        },
+        {
+          "scrollY": 2854,
+          "progress": 1
+        },
+        {
+          "scrollY": 0,
+          "progress": 0
+        }
+      ],
+      "visualEvidence": "golden line and marker screenshots; SVG namespace and nonzero geometry",
+      "fallback": "static route and click draw"
+    },
+    {
+      "name": "latest actual export interactions",
+      "result": "passed in browser only",
+      "coverHeights": [
+        686.885437,
+        2497.760498
+      ],
+      "waterSelected": true,
+      "starStates": [
+        "visible",
+        "hidden"
+      ],
+      "cardScrollTop": [
+        530,
+        1060
+      ]
+    }
+  ],
+  "overall": "Native candidate and editor import investigated; not approved as working in WeChat",
+  "latestEditorExportTestCommit": "8ceddba"
+}

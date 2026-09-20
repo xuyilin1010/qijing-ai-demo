@@ -1,0 +1,20 @@
+<section style="background:#07172c;color:#f0dbad;padding:24px;font-family:sans-serif;">
+<p style="font-size:20px;line-height:1.6;">无脚本路线跟随研究样本</p>
+<p style="font-size:14px;line-height:1.6;">沿页面下滑，路线应逐渐点亮；向上返回，路线应随之回退。此页尚未通过公众号测试。</p>
+<section style="position:sticky;top:12px;background:#07172c;padding:12px;border:1px solid #49606f;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" width="100%" style="display:block;">
+<style>
+@keyframes wxlab_draw {from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes wxlab_move {from{offset-distance:0%}to{offset-distance:100%}}
+.wxlab-progress {animation:wxlab_draw 1s linear both;animation-timeline:scroll(root block);}
+.wxlab-point {offset-path:path('M20 90 C120 5 180 160 280 80 S430 10 580 85');offset-rotate:0deg;animation:wxlab_move 1s linear both;animation-timeline:scroll(root block);}
+</style>
+<path d="M20 90 C120 5 180 160 280 80 S430 10 580 85" fill="none" stroke="#344b61" stroke-width="4"/>
+<path class="wxlab-progress" pathLength="1" d="M20 90 C120 5 180 160 280 80 S430 10 580 85" fill="none" stroke="#eac383" stroke-width="4" stroke-dasharray="1" stroke-dashoffset="1"/>
+<circle class="wxlab-point" r="9" fill="#fff4cf" stroke="#c69353" stroke-width="3"/>
+</svg>
+</section>
+<section style="height:900px;padding-top:50px;box-sizing:border-box;font-size:24px;">01 海岸 · 继续向下滚动</section>
+<section style="height:900px;padding-top:50px;box-sizing:border-box;font-size:24px;">02 沙丘 · 继续向下滚动</section>
+<section style="height:900px;padding-top:50px;box-sizing:border-box;font-size:24px;">03 星空 · 回到顶部验证回退</section>
+</section>
