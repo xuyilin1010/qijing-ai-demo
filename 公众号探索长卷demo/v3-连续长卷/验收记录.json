@@ -1,0 +1,16 @@
+{
+  "version": "V3 continuous long document",
+  "reference": "002-迪桑特吴磊同频破风：点击封面后收起封面并展开完整正文",
+  "observedChecks": [
+    {"viewport":"1280x720", "documentHeightAfterOpen":5065, "globalChapterButtons":0},
+    {"viewport":"1280x720", "scrollTop":432, "simultaneouslyVisible":["文化核心","产品定位"]},
+    {"viewport":"390x844", "mode":"immersive", "documentHeightAfterOpen":5621, "frameCount":7, "scrollTopBetweenSections":380},
+    {"viewport":"390x844", "mode":"adaptive", "documentHeightAfterOpen":5369, "horizontalOverflow":false},
+    {"viewport":"844x390", "documentHeightAfterResize":3333, "horizontalOverflow":false, "missingImages":[], "consoleErrors":[]},
+    {"action":"选择攀岩及奔跑", "result":"只切换局部视频区域，正文长度不变"},
+    {"action":"点击人物按钮及在照片上拖动", "result":"切换到品质创造者，滚动位置保持 4336"},
+    {"action":"滚动至文末", "result":"联系方式区域可达，返回封面按钮可用"},
+    {"action":"返回封面后重新展开", "result":"视频为星空，人物为户外探索者"}
+  ],
+  "limitations":["产品、视频与联系方式仍为占位","尚未实测真实手机微信浏览器","独立 H5，非微信公众号正文原生 SVG"]
+}

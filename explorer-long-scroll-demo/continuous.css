@@ -1,0 +1,36 @@
+/* Continuous document layout. The V2 art direction is retained; its pager is not. */
+html{height:auto;min-height:100%;overflow-x:clip;overflow-y:auto;scrollbar-color:#9d8865 #06121f;scrollbar-width:thin}
+body{height:auto;min-height:100svh;overflow:visible}
+body.cover-open{overflow:hidden;height:100svh}
+.experience{position:relative;inset:auto;overflow:clip;min-height:100svh;animation:stage-in .65s both}
+.stage{position:relative;inset:auto;width:100%;height:auto;overflow:visible;container-type:normal;touch-action:auto;background:#06121f}
+.stage.is-rotated{position:relative;inset:auto;width:100%;height:auto;transform:none}
+.stage-head{position:relative;top:auto;left:auto;right:auto;height:64px;max-width:1440px;margin:auto;padding:0 4.5%;background:#06121f;pointer-events:auto}
+.wordmark{font-size:14px;gap:10px}.wordmark .icon{width:24px;height:24px}.wordmark small{font-size:7px}
+.header-actions{gap:24px}.header-actions button{font-size:11px;padding:12px 0}
+.reading-intro{position:absolute;left:50%;top:27px;transform:translateX(-50%);font-size:10px;color:#8296ab;letter-spacing:2px;white-space:nowrap;pointer-events:none}
+.rail{position:relative;inset:auto;display:block;transform:none;transition:none;will-change:auto;max-width:1440px;margin:0 auto;outline:none}
+.chapter-frame{position:relative;width:var(--panel-width);height:var(--panel-height);max-width:100%;overflow:clip;isolation:isolate}
+.chapter{position:relative;flex:none;width:var(--panel-width);height:var(--panel-height);container-type:size;overflow:hidden;background:#06121f;scroll-snap-align:none}
+.chapter:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:6;background:linear-gradient(180deg,#06121f,transparent 8%,transparent 92%,#06121f)}
+.is-rotated .chapter-frame{width:var(--panel-height);height:var(--panel-width)}
+.is-rotated .chapter{position:absolute;left:0;top:0;transform-origin:0 0;transform:translateX(var(--panel-height)) rotate(90deg)}
+.is-rotated .chapter:after{background:linear-gradient(90deg,#06121f,transparent 8%,transparent 92%,#06121f)}
+.scroll-invitation{position:absolute;bottom:8%;left:8%;font-size:clamp(9px,.75cqw,12px);letter-spacing:2px;color:#bca782;display:flex;align-items:center;gap:18px;z-index:7}
+.scroll-invitation i{font-size:22px;font-style:normal;animation:swipe-nudge 2.5s infinite}
+.is-rotated .scroll-invitation i{rotate:-90deg}
+.chapter-copy{top:22%}.culture .chapter-copy{top:22%}.culture .small-note{color:#a0b0bf}
+.product-art{top:15%;height:70%}.product-cutout{animation-play-state:running}
+.moment-tabs{bottom:18%}.moments .chapter-copy{top:24%}
+.audience-intro{top:17%}.portrait-grid{top:49%}.persona-note{bottom:10%}
+.stories .chapter-copy{top:21%}.story-photo{top:12%;height:75%;max-width:34%;right:14%;cursor:grab;touch-action:pan-x pinch-zoom;user-select:none}
+.story-photo:active{cursor:grabbing}.story-photo img{-webkit-user-drag:none;user-select:none}
+.is-rotated .story-photo{touch-action:pan-y pinch-zoom}
+.story-controls{top:32%}.story-controls button{min-width:36px;min-height:32px}
+.swipe-story-hint{bottom:12%;font-size:clamp(9px,.8cqw,13px)}
+.contact-copy{top:22%}.contact-grid{top:25%}.contact-colophon{bottom:9%}
+.contact-colophon:after{content:"END OF THE JOURNEY";position:absolute;top:46px;left:0;letter-spacing:4px;color:#526779;font-size:8px}
+@media(max-width:900px){.reading-intro{display:none}.stage-head{height:48px;padding:0 5%}.wordmark{font-size:11px;gap:7px}.wordmark small{display:none}.wordmark .icon{width:20px;height:20px}.header-actions{gap:16px}.header-actions button{font-size:9px}.header-actions #motion{display:none}}
+@container(max-height:500px){.chapter-copy,.culture .chapter-copy{top:21%}.chapter h2{font-size:4.8cqw}.product-art{top:14%;height:70%}.moments .chapter-copy{top:24%}.audience-intro{top:16%}.portrait-grid{top:48%}.stories .chapter-copy{top:20%}.story-photo{top:12%;height:75%;right:16%}.swipe-story-hint{bottom:10%}.contact-copy{top:23%}.contact-colophon{bottom:8%}}
+@container(max-aspect-ratio:4/5){.chapter-copy,.culture .chapter-copy{top:19%}.chapter h2{font-size:11cqw}.positioning .chapter-copy,.introduction .chapter-copy{top:10%}.positioning h2,.introduction h2{font-size:8.8cqw}.product-art{height:34%;width:50%;top:53%;right:24%}.detail-art{height:31%;top:57%}.moments .chapter-copy{top:12%}.moment-tabs{bottom:15%}.audience-intro{top:12%}.portrait-grid{top:37%;gap:22px}.persona-note{bottom:9%}.stories .chapter-copy{top:10%}.story-photo{top:43%;height:43%;max-width:none;right:22%}.story-controls{top:52%;right:8%}.swipe-story-hint{bottom:7%;font-size:8px;letter-spacing:1px}.contact-copy{top:11%}.contact-grid{top:46%}.contact-colophon{bottom:9%}.scroll-invitation{bottom:9%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.experience{animation:none}}
