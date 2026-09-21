@@ -3,7 +3,7 @@
   const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
   const entry=$('#entry'),experience=$('#experience'),viewport=$('#viewport');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  let rotated=false,opening=false,story=0,drag=null,photoDrag=null,wheelUntil=0;
+  let rotated=false,opening=false,story=0,feature=0,drag=null,photoDrag=null,wheelUntil=0;
   let lastW=0,lastH=0;
   let paintFrame=0;
   function paint(){paintFrame=0;backdrop.render(position());}
@@ -32,11 +32,18 @@
     $('#story-counter').textContent=`0${story+1} / 03`;
     $('#announcement').textContent=`人物故事 ${story+1}/3`;
   }
+  function setFeature(index,focus=false){
+    feature=Math.max(0,Math.min(2,index));
+    $$('[data-feature-tab]').forEach((button,i)=>{const active=i===feature;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;if(active&&focus)button.focus({preventScroll:true});});
+    $$('[data-feature-panel]').forEach((panel,i)=>{panel.hidden=i!==feature;panel.classList.toggle('active',i===feature);});
+    $('#announcement').textContent=`探索角度：${['感官','体验','情感'][feature]}`;
+  }
   function reveal(){if(opening||entry.hidden)return;opening=true;$('#enter').disabled=true;entry.classList.add('is-leaving');setStory(0);setTimeout(()=>{entry.hidden=true;experience.hidden=false;entry.classList.remove('is-leaving');layout();viewport.focus({preventScroll:true});opening=false;$('#enter').disabled=false;$('#announcement').textContent='横幅已展开，向右连续滑动探索';},reduced.matches?0:450);}
   function back(){experience.hidden=true;entry.hidden=false;drag=null;photoDrag=null;$('#enter').focus({preventScroll:true});}
   entry.addEventListener('click',reveal);
   $('#restart').addEventListener('click',back);
-  $$('[data-story-open]').forEach(b=>b.addEventListener('click',()=>{setStory(Number(b.dataset.storyOpen));move((rotated?innerHeight:innerWidth)*5,true);}));
+  $$('[data-feature-tab]').forEach(button=>{button.addEventListener('click',()=>setFeature(Number(button.dataset.featureTab)));button.addEventListener('keydown',event=>{if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();setFeature((feature+(['ArrowDown','ArrowRight'].includes(event.key)?1:2))%3,true);});});
+  $$('[data-story-open]').forEach(b=>b.addEventListener('click',()=>{setStory(Number(b.dataset.storyOpen));move((rotated?innerHeight:innerWidth)*6,true);}));
   $$('[data-story-go]').forEach(b=>b.addEventListener('click',()=>setStory(Number(b.dataset.storyGo))));
   $('#story-prev').addEventListener('click',()=>setStory(story-1));$('#story-next').addEventListener('click',()=>setStory(story+1));
   viewport.addEventListener('scroll',progress,{passive:true});
@@ -68,5 +75,5 @@
     }
   });
   window.addEventListener('resize',()=>{if(Math.abs(lastW-innerWidth)>1||Math.abs(lastH-innerHeight)>120)layout(!experience.hidden);});
-  setStory(0);layout();
+  setStory(0);setFeature(0);layout();
 })();
