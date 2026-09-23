@@ -50,3 +50,6 @@
 .audience{background-image:url('assets/journey-flow.webp');background-position:center;background-size:cover;background-repeat:no-repeat}
 .star-product-reveal img{transform:rotate(-90deg)}
 .feature-visual-roll img{width:114%;max-width:none;max-height:108%}.feature-panel.active .feature-visual-roll img{animation-name:feature-roll-reveal}@keyframes feature-roll-reveal{from{opacity:0;transform:translate3d(26px,18px,0) scale(.72)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+/* Feature page background: restrained blue flow + coffee warmth, with copy-safe overlays. */
+.feature-tabs{background:#061421 url('assets/feature-tabs-background-v1.png') center/cover no-repeat}
+.feature-tabs:before{background:linear-gradient(90deg,#061421f2 0%,#061421b8 16%,#06142142 36%,transparent 55%,#07111bbd 78%,#07111be0 100%),linear-gradient(180deg,#06142124 0%,transparent 52%,#06142166 100%)}
