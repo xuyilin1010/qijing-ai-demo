@@ -3,7 +3,7 @@
 class PanoramaRenderer {
   constructor(canvas, images, invalidate) {
     this.canvas=canvas;
-    this.ctx=canvas.getContext('2d',{alpha:false});
+    this.ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});
     this.buffer=document.createElement('canvas');
     this.layer=this.buffer.getContext('2d');
     this.images=images;
@@ -17,7 +17,8 @@ class PanoramaRenderer {
   resize(width,height,rotated){
     this.width=width;this.height=height;this.rotated=rotated;
     this.w=rotated?height:width;this.h=rotated?width:height;
-    this.dpr=Math.min(devicePixelRatio||1,2);
+    const mobile=matchMedia('(pointer:coarse)').matches||Math.min(width,height)<800;
+    this.dpr=mobile?1:Math.min(devicePixelRatio||1,1.5);
     this.canvas.width=Math.round(width*this.dpr);
     this.canvas.height=Math.round(height*this.dpr);
     this.buffer.width=Math.round(this.w*this.dpr);
