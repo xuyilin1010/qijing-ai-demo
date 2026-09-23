@@ -56,3 +56,4 @@
 #surface,.rail{width:calc(var(--pw)*8.35)}.closing{flex-basis:calc(var(--pw)*1.35);width:calc(var(--pw)*1.35)}.closing-background{object-position:center}
 .final-flow-art{left:calc(var(--pw)*6);width:calc(var(--pw)*2.35);background-image:linear-gradient(90deg,#06142155 0%,transparent 8%,transparent 92%,#06142155 100%),url('assets/ending-panorama-v2.png');background-size:cover;background-position:center;background-repeat:no-repeat}.closing{background:transparent}.closing .closing-shade,.stories:after,.closing:before{display:none!important}
 .rotated #surface{width:var(--ph);height:calc(var(--pw)*8.35)}
+.closing-brand-logo,.closing-copy .closing-brand-logo+h3{transform:translateX(-2.5cqw)}.feature-visual-box img{width:126%;max-width:none;max-height:112%}
