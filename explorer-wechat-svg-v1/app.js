@@ -19,7 +19,7 @@
   const position=()=>rotated?viewport.scrollTop:viewport.scrollLeft;
   const maximum=()=>rotated?viewport.scrollHeight-viewport.clientHeight:viewport.scrollWidth-viewport.clientWidth;
   function move(to,smooth=false){viewport.scrollTo({left:rotated?0:to,top:rotated?to:0,behavior:smooth&&!reduced.matches?'smooth':'instant'});}
-  function progress(){const fraction=maximum()>0?position()/maximum():0;$('#progress').style.transform=`${rotated?'scaleY':'scaleX'}(${Math.max(.008,fraction)})`;if(!experience.hidden){const chapterWidth=rotated?innerHeight:innerWidth;if(position()>1.32*chapterWidth)$('.product-reveal')?.classList.add('is-visible');if(position()>4.6*chapterWidth)startImage($('.story-panel[data-story="0"] img'));if(position()>5*chapterWidth)startImage($('.closing-background'));}schedulePaint();}
+  function progress(){const fraction=maximum()>0?position()/maximum():0;$('#progress').style.transform=`${rotated?'scaleY':'scaleX'}(${Math.max(.008,fraction)})`;if(!experience.hidden){const chapterWidth=rotated?innerHeight:innerWidth;if(position()>.48*chapterWidth)$('.product-reveal')?.classList.add('is-visible');if(position()>4.6*chapterWidth)startImage($('.story-panel[data-story="0"] img'));if(position()>5*chapterWidth)startImage($('.closing-background'));}schedulePaint();}
   function layout(preserve=false){
     const fraction=maximum()>0?position()/maximum():0;
     rotated=innerWidth<innerHeight;
