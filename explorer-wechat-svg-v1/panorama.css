@@ -40,3 +40,5 @@
 
 /* Wide crossfade between the story chapter and the independent closing artwork. */
 .stories:after,.closing:before{content:"";position:absolute;top:0;bottom:0;width:18%;pointer-events:none;z-index:2}.stories:after{right:0;background:linear-gradient(90deg,transparent 0%,#07142152 38%,#071421bd 72%,#071421 100%),linear-gradient(180deg,transparent 61%,#219ee228 68%,#0b4d7d33 75%,transparent 84%)}.closing:before{left:0;background:linear-gradient(90deg,#071421 0%,#071421c7 24%,#0714216b 58%,transparent 100%),linear-gradient(180deg,transparent 61%,#219ee22e 68%,#0b4d7d2b 75%,transparent 84%)}.closing-copy,.closing-contact{z-index:3}
+
+.feature-copy.feature-detail-list{display:grid;align-content:center;gap:3.2cqh}.feature-copy.feature-detail-list .feature-detail-group h3{font-size:clamp(16px,1.75cqw,29px);line-height:1.35;letter-spacing:.04em}.feature-copy.feature-detail-list .feature-detail-group p{font-size:clamp(9px,.82cqw,13px);line-height:1.9;margin:1.1cqh 0 0;color:#c9d1d8}
