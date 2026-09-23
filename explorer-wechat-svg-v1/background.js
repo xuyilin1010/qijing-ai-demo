@@ -34,7 +34,8 @@ class PanoramaRenderer {
       {x:-.14,width:1.26,fadeIn:0,fadeOut:.75},
       {x:.84,width:1.47,fadeIn:.14,fadeOut:.78},
       {x:1.75,width:1.68,fadeIn:.14,fadeOut:.78},
-      {x:2.87,width:2.10,fadeIn:.14,fadeOut:.78}
+      {x:2.87,width:2.10,fadeIn:.14,fadeOut:.47,fadeEnd:.62},
+      {x:3.82,width:1.32,fadeIn:.14,fadeOut:.88,fadeEnd:1}
     ];
     scenes.forEach((scene,index)=>{
       const image=this.images[index];
@@ -50,11 +51,11 @@ class PanoramaRenderer {
       const fade=layer.createLinearGradient(left,0,left+tileWidth,0);
       fade.addColorStop(0,scene.fadeIn?'rgba(0,0,0,0)':'#000');
       if(scene.fadeIn)fade.addColorStop(scene.fadeIn,'#000');
-      fade.addColorStop(scene.fadeOut,'#000');fade.addColorStop(1,'rgba(0,0,0,0)');
+      fade.addColorStop(scene.fadeOut,'#000');fade.addColorStop(scene.fadeEnd??1,'rgba(0,0,0,0)');
       layer.globalCompositeOperation='destination-in';layer.fillStyle=fade;layer.fillRect(0,0,w,h);
       layer.globalCompositeOperation='source-over';ctx.drawImage(buffer,0,0,w,h);
     });
-    const tailStart=4.13*w-offset,tailEnd=7*w-offset;
+    const tailStart=4.92*w-offset,tailEnd=7*w-offset;
     if(tailStart<w){
       const tail=ctx.createLinearGradient(tailStart,0,tailEnd,0);
       tail.addColorStop(0,'rgba(6,27,44,0)');tail.addColorStop(.30,'#061b2c');tail.addColorStop(1,'#071421');
