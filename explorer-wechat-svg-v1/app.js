@@ -49,7 +49,6 @@
   async function reveal(){if(opening||entry.hidden)return;opening=true;$('#enter').disabled=true;$('.cover-label').textContent='正在加载探索画面';await Promise.race([readyImage(landscapeImages[0]),new Promise(resolve=>setTimeout(resolve,3500))]);$('.cover-label').textContent='点击开启探索';entry.classList.add('is-leaving');setStory(0);setTimeout(()=>{entry.hidden=true;experience.hidden=false;entry.classList.remove('is-leaving');layout();viewport.focus({preventScroll:true});opening=false;$('#enter').disabled=false;$('#announcement').textContent='横幅已展开，向右连续滑动探索';landscapeImages.slice(1).forEach(startImage);startImage($('.closing-background'));},reduced.matches?0:450);}
   function back(){experience.hidden=true;entry.hidden=false;drag=null;photoDrag=null;$('.product-reveal')?.classList.remove('is-visible');$('#enter').focus({preventScroll:true});}
   entry.addEventListener('click',reveal);
-  $('#restart').addEventListener('click',back);
   $$('[data-feature-tab]').forEach(button=>{button.addEventListener('click',()=>setFeature(Number(button.dataset.featureTab)));button.addEventListener('keydown',event=>{if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();setFeature((feature+(['ArrowDown','ArrowRight'].includes(event.key)?1:2))%3,true);});});
   $$('[data-story-open]').forEach(b=>b.addEventListener('click',()=>{setStory(Number(b.dataset.storyOpen));move((rotated?innerHeight:innerWidth)*6,true);}));
   $$('[data-story-go]').forEach(b=>b.addEventListener('click',()=>setStory(Number(b.dataset.storyGo))));
