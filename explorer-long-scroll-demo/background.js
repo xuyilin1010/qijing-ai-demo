@@ -11,7 +11,7 @@ class PanoramaRenderer {
       const ready=()=>{image.dataset.state=image.naturalWidth?'loaded':'error';invalidate();};
       image.addEventListener('load',ready);
       image.addEventListener('error',ready);
-      if(image.complete)ready();
+      if(image.getAttribute('src') && image.complete)ready();
     }
   }
   resize(width,height,rotated){
