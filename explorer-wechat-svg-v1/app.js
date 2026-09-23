@@ -9,6 +9,11 @@
   const landscapeImages=$$('#landscape-sources img');
   function startImage(image){if(image?.dataset.src&&!image.hasAttribute('src'))image.src=image.dataset.src;}
   function startImages(root){root?.querySelectorAll('img[data-src]').forEach(startImage);}
+  function warmCriticalMedia(){
+    landscapeImages.slice(1).forEach((image,index)=>setTimeout(()=>startImage(image),index*160));
+    setTimeout(()=>startImages($('.feature-panel.active')),700);
+    $$('.story-panel img[data-src]').forEach((image,index)=>setTimeout(()=>startImage(image),900+index*180));
+  }
   function readyImage(image){startImage(image);return image.decode?image.decode().catch(()=>{}):Promise.resolve();}
   function paint(){paintFrame=0;backdrop.render(position());}
   function schedulePaint(){if(!paintFrame)paintFrame=requestAnimationFrame(paint);}
@@ -59,7 +64,7 @@
     if(!experience.hidden)startImages($(`.feature-panel[data-feature-panel="${feature}"]`));
     $('#announcement').textContent=`探索角度：${['感官','体验','情感'][feature]}`;
   }
-  async function reveal(){if(opening||entry.hidden)return;opening=true;$('#enter').disabled=true;$('.cover-label').textContent='正在加载探索画面';await Promise.race([readyImage(landscapeImages[0]),new Promise(resolve=>setTimeout(resolve,1800))]);$('.cover-label').textContent='点击开启探索';entry.classList.add('is-leaving');setStory(0);setTimeout(()=>{entry.hidden=true;experience.hidden=false;entry.classList.remove('is-leaving');layout();startImage(landscapeImages[1]);viewport.focus({preventScroll:true});opening=false;$('#enter').disabled=false;$('#announcement').textContent='横幅已展开，向右连续滑动探索';},reduced.matches?0:300);}
+  async function reveal(){if(opening||entry.hidden)return;opening=true;$('#enter').disabled=true;$('.cover-label').textContent='正在加载探索画面';await Promise.race([readyImage(landscapeImages[0]),new Promise(resolve=>setTimeout(resolve,1800))]);$('.cover-label').textContent='点击开启探索';entry.classList.add('is-leaving');setStory(0);setTimeout(()=>{entry.hidden=true;experience.hidden=false;entry.classList.remove('is-leaving');layout();startImage(landscapeImages[1]);warmCriticalMedia();viewport.focus({preventScroll:true});opening=false;$('#enter').disabled=false;$('#announcement').textContent='横幅已展开，向右连续滑动探索';},reduced.matches?0:300);}
   function back(){experience.hidden=true;entry.hidden=false;drag=null;photoDrag=null;$('.product-reveal')?.classList.remove('is-visible');$('#enter').focus({preventScroll:true});}
   entry.addEventListener('click',reveal);
   $$('[data-feature-tab]').forEach(button=>{button.addEventListener('click',()=>setFeature(Number(button.dataset.featureTab)));button.addEventListener('keydown',event=>{if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();setFeature((feature+(['ArrowDown','ArrowRight'].includes(event.key)?1:2))%3,true);});});
